@@ -1,0 +1,15 @@
+{
+  "name": "arthouse-stream-server",
+  "version": "1.0.0",
+  "description": "Icecast stream proxy and metadata server for Arthouse AM",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
