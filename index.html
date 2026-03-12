@@ -1,946 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arthouse AM · 930</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --cream: #f5f0e8;
-      --ink: #1a1410;
-      --rust: #c94b2a;
-      --gold: #b8922a
-      --warm-gray: #8a7f74;
-      --paper: #ede8de;
-    }
-
-    html, body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      overflow-x: hidden;
-    }
-
-    /* Grain overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 100;
-      opacity: 0.6;
-    }
-
-    /* Decorative rule lines */
-    .rule-top, .rule-bottom {
-      position: fixed;
-      left: 0; right: 0;
-      height: 1px;
-      background: var(--ink);
-      opacity: 0.15;
-    }
-    .rule-top { top: 24px; }
-    .rule-bottom { bottom: 24px; }
-
-    .rule-left, .rule-right {
-      position: fixed;
-      top: 0; bottom: 0;
-      width: 1px;
-      background: var(--ink);
-      opacity: 0.15;
-    }
-    .rule-left { left: 24px; }
-    .rule-right { right: 24px; }
-
-    /* Corner marks */
-    .corner {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      opacity: 0.3;
-    }
-    .corner::before, .corner::after {
-      content: '';
-      position: absolute;
-      background: var(--ink);
-    }
-    .corner--tl { top: 20px; left: 20px; }
-    .corner--tr { top: 20px; right: 20px; }
-    .corner--bl { bottom: 20px; left: 20px; }
-    .corner--br { bottom: 20px; right: 20px; }
-
-    .corner--tl::before, .corner--tr::before, .corner--bl::before, .corner--br::before {
-      width: 100%; height: 1px; top: 0; left: 0;
-    }
-    .corner--tl::after, .corner--tr::after, .corner--bl::after, .corner--br::after {
-      width: 1px; height: 100%; top: 0; left: 0;
-    }
-    .corner--tr::before { left: auto; right: 0; }
-    .corner--tr::after { left: auto; right: 0; }
-    .corner--bl::before { top: auto; bottom: 0; }
-    .corner--bl::after { top: auto; bottom: 0; }
-    .corner--br::before { top: auto; bottom: 0; left: auto; right: 0; }
-    .corner--br::after { top: auto; bottom: 0; left: auto; right: 0; }
-
-    /* Hero section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 24px 80px;
-      position: relative;
-    }
-
-    /* Main content card */
-    .card {
-      max-width: 560px;
-      width: 100%;
-      text-align: center;
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      margin-bottom: 20px;
-      animation: fadeUp 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .wordmark {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(52px, 10vw, 88px);
-      font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 4px;
-      animation: fadeUp 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .wordmark em {
-      font-style: italic;
-      color: var(--rust);
-    }
-
-    .frequency {
-      font-family: 'DM Mono', monospace;
-      font-size: clamp(13px, 2.5vw, 16px);
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      color: var(--warm-gray);
-      margin-bottom: 40px;
-      animation: fadeUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    /* Divider */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 40px;
-      animation: fadeUp 0.8s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    .divider-line { flex: 1; height: 1px; background: var(--ink); opacity: 0.12; }
-    .divider-diamond {
-      width: 6px; height: 6px;
-      background: var(--rust);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    /* Player */
-    .player-wrap {
-      animation: fadeUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-      margin-bottom: 36px;
-    }
-
-    .player-label {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      margin-bottom: 16px;
-    }
-
-    .player {
-      background: var(--paper);
-      border: 1px solid rgba(26,20,16,0.12);
-      border-radius: 4px;
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .player::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--rust);
-    }
-
-    /* Waveform visualizer */
-    .waveform {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 32px;
-      flex: 1;
-    }
-
-    .waveform-bar {
-      width: 3px;
-      border-radius: 2px;
-      background: var(--ink);
-      opacity: 0.15;
-      transition: opacity 0.3s;
-    }
-
-    .waveform-bar.active {
-      animation: wave var(--dur, 0.8s) ease-in-out infinite alternate;
-      opacity: 0.7;
-    }
-
-    @keyframes wave {
-      from { height: var(--min, 4px); }
-      to { height: var(--max, 28px); }
-    }
-
-    .play-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 1.5px solid var(--ink);
-      background: var(--ink);
-      color: var(--cream);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.2s, transform 0.15s;
-      position: relative;
-    }
-
-    .play-btn:hover {
-      background: var(--rust);
-      border-color: var(--rust);
-      transform: scale(1.05);
-    }
-
-    .play-btn:active { transform: scale(0.97); }
-
-    .play-icon, .pause-icon { position: absolute; transition: opacity 0.15s; }
-    .play-icon { opacity: 1; }
-    .pause-icon { opacity: 0; }
-
-    .player.playing .play-icon { opacity: 0; }
-    .player.playing .pause-icon { opacity: 1; }
-
-    .player-meta {
-      text-align: left;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .now-playing-label {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      margin-bottom: 4px;
-    }
-
-    .station-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .track-ticker {
-      font-size: 10px;
-      letter-spacing: 0.05em;
-      color: var(--gold);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-      min-height: 14px;
-    }
-
-    .status-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--warm-gray);
-      margin-right: 6px;
-      vertical-align: middle;
-      transition: background 0.3s;
-    }
-
-    .status-dot.live {
-      background: var(--rust);
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .status-text {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--warm-gray);
-      margin-top: 4px;
-      transition: color 0.3s;
-    }
-
-    .status-text.live { color: var(--rust); }
-
-    /* Loading spinner */
-    .loading-ring {
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      border: 1.5px solid transparent;
-      border-top-color: var(--rust);
-      animation: spin 0.8s linear infinite;
-      display: none;
-    }
-
-    .play-btn.loading .loading-ring { display: block; }
-    .play-btn.loading .play-icon, .play-btn.loading .pause-icon { opacity: 0; }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Volume */
-    .volume-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(26,20,16,0.08);
-    }
-
-    .vol-icon { color: var(--warm-gray); flex-shrink: 0; }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      flex: 1;
-      height: 2px;
-      background: rgba(26,20,16,0.12);
-      border-radius: 2px;
-      outline: none;
-      cursor: pointer;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--ink);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-    input[type="range"]::-webkit-slider-thumb:hover {
-      background: var(--rust);
-      transform: scale(1.2);
-    }
-
-    /* Footer info */
-    .info {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--warm-gray);
-      line-height: 2;
-      animation: fadeUp 0.8s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .info a {
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(26,20,16,0.2);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .info a:hover { color: var(--rust); border-color: var(--rust); }
-
-    /* Error state */
-    .error-msg {
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      color: var(--rust);
-      margin-top: 10px;
-      display: none;
-    }
-    .error-msg.visible { display: block; }
-
-    /* Scroll hint */
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.35;
-      animation: fadeUp 1s 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    .scroll-hint span {
-      font-size: 8px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-    }
-    .scroll-hint svg {
-      animation: bounce 2s ease-in-out infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(4px); }
-    }
-
-    /* ── Content sections ───────────────────────────────────── */
-    .section {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .section-eyebrow {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--rust);
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 6vw, 42px);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      color: var(--ink);
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--rust);
-    }
-
-    .section-body {
-      font-size: 13px;
-      line-height: 1.9;
-      color: var(--warm-gray);
-      letter-spacing: 0.03em;
-    }
-
-    .section-body p + p { margin-top: 16px; }
-
-    /* Section divider */
-    .section-rule {
-      max-width: 560px;
-      margin: 0 auto;
-      height: 1px;
-      background: var(--ink);
-      opacity: 0.08;
-    }
-
-    /* Schedule grid */
-    .schedule-grid {
-      display: grid;
-      gap: 1px;
-      background: rgba(26,20,16,0.08);
-      border: 1px solid rgba(26,20,16,0.08);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 32px;
-    }
-
-    .schedule-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      background: var(--cream);
-      transition: background 0.2s;
-    }
-
-    .schedule-row:hover { background: var(--paper); }
-
-    .schedule-time {
-      padding: 18px 16px;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--warm-gray);
-      border-right: 1px solid rgba(26,20,16,0.08);
-      display: flex;
-      align-items: center;
-    }
-
-    .schedule-show {
-      padding: 18px 20px;
-    }
-
-    .schedule-show-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 3px;
-    }
-
-    .schedule-show-desc {
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--warm-gray);
-    }
-
-    /* Social / Connect */
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border: 1px solid rgba(26,20,16,0.15);
-      border-radius: 3px;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-
-    .social-link:hover {
-      border-color: var(--rust);
-      color: var(--rust);
-      background: rgba(201,75,42,0.04);
-    }
-
-    /* Page footer */
-    .page-footer {
-      background: var(--ink);
-      color: var(--cream);
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .footer-wordmark {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .footer-wordmark em { font-style: italic; color: var(--rust); }
-
-    .footer-meta {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.35);
-      line-height: 2;
-    }
-
-    .footer-meta a {
-      color: rgba(245,240,232,0.5);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(245,240,232,0.15);
-      transition: color 0.2s;
-    }
-
-    .footer-meta a:hover { color: var(--cream); }
-  </style>
-</head>
-<body>
-
-  <!-- Frame decorations -->
-  <div class="rule-top"></div>
-  <div class="rule-bottom"></div>
-  <div class="rule-left"></div>
-  <div class="rule-right"></div>
-  <div class="corner corner--tl"></div>
-  <div class="corner corner--tr"></div>
-  <div class="corner corner--bl"></div>
-  <div class="corner corner--br"></div>
-
-  <!-- ── Hero ─────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="card">
-
-      <p class="eyebrow">New York · AM Radio</p>
-
-      <h1 class="wordmark">Art<em>house</em><br>AM</h1>
-      <p class="frequency">WPAT · 930 AM · New York</p>
-
-      <div class="divider">
-        <div class="divider-line"></div>
-        <div class="divider-diamond"></div>
-        <div class="divider-line"></div>
-      </div>
-
-      <div class="player-wrap">
-        <p class="player-label">Live Stream</p>
-
-        <div class="player" id="player">
-          <button class="play-btn" id="playBtn" aria-label="Play / Pause">
-            <div class="loading-ring"></div>
-            <svg class="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            <svg class="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-            </svg>
-          </button>
-
-          <div class="player-meta">
-            <p class="now-playing-label">Now Playing</p>
-            <p class="station-name" id="stationName">WPAT 930 AM</p>
-            <p class="track-ticker" id="trackTicker"></p>
-            <p class="status-text" id="statusText">
-              <span class="status-dot" id="statusDot"></span>
-              <span id="statusLabel">Ready</span>
-            </p>
-          </div>
-
-          <div class="waveform" id="waveform"></div>
-        </div>
-
-        <div class="volume-row">
-          <svg class="vol-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-          </svg>
-          <input type="range" id="volume" min="0" max="1" step="0.01" value="0.85" aria-label="Volume" />
-          <svg class="vol-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-          </svg>
-        </div>
-
-        <p class="error-msg" id="errorMsg">Stream unavailable — please try again shortly.</p>
-      </div>
-
-      <div class="divider">
-        <div class="divider-line"></div>
-        <div class="divider-diamond"></div>
-        <div class="divider-line"></div>
-      </div>
-
-      <p class="info">
-        Multicultural Radio Broadcasting · New York, NY<br>
-        <a href="https://www.wpat930am.com/" target="_blank" rel="noopener">wpat930am.com</a>
-        &nbsp;·&nbsp;
-        <a href="https://publicfiles.fcc.gov/am-profile/WPAT" target="_blank" rel="noopener">FCC Public File</a>
-      </p>
-
-    </div>
-
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--ink)">
-        <path d="M7 10l5 5 5-5z"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- ── About ─────────────────────────────────────────────── -->
-  <div class="section-rule"></div>
-
-  <section class="section">
-    <p class="section-eyebrow">About</p>
-    <h2 class="section-title">Where the <em>art</em> lives<br>on the dial</h2>
-    <div class="section-body">
-      <p>Arthouse AM is a curated listening experience broadcasting on WPAT 930 AM out of New York City — one of the most storied AM frequencies in American radio history. We exist at the intersection of underground culture, world music, and the kind of programming that doesn't fit anywhere else.</p>
-      <p>From deep soul cuts to experimental electronic sessions, from late-night jazz to conversations with the people shaping New York's creative underground — this is radio for people who actually listen.</p>
-      <p>Tune in. Turn it up. Let it play.</p>
-    </div>
-  </section>
-
-  <!-- ── Programming ───────────────────────────────────────── -->
-  <div class="section-rule"></div>
-
-  <section class="section">
-    <p class="section-eyebrow">Programming</p>
-    <h2 class="section-title">On the <em>schedule</em></h2>
-
-    <div class="schedule-grid">
-      <div class="schedule-row">
-        <div class="schedule-time">Mon – Fri<br>6 – 10 AM</div>
-        <div class="schedule-show">
-          <p class="schedule-show-name">Morning Transmission</p>
-          <p class="schedule-show-desc">News, culture, and the sounds to start your day</p>
-        </div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">Weekdays<br>Noon – 2 PM</div>
-        <div class="schedule-show">
-          <p class="schedule-show-name">The Midday Mix</p>
-          <p class="schedule-show-desc">World music and global grooves</p>
-        </div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">Fri & Sat<br>9 PM – 1 AM</div>
-        <div class="schedule-show">
-          <p class="schedule-show-name">Late Night Sessions</p>
-          <p class="schedule-show-desc">Live DJ sets, deep cuts, and after-hours listening</p>
-        </div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">Sunday<br>All Day</div>
-        <div class="schedule-show">
-          <p class="schedule-show-name">Sunday Selection</p>
-          <p class="schedule-show-desc">The week's best music, curated and uninterrupted</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Connect ───────────────────────────────────────────── -->
-  <div class="section-rule"></div>
-
-  <section class="section">
-    <p class="section-eyebrow">Connect</p>
-    <h2 class="section-title">Find us<br><em>everywhere</em></h2>
-    <div class="section-body">
-      <p>Follow along, submit music, or just say hello. We're building something here and we want you to be part of it.</p>
-    </div>
-
-    <div class="social-links">
-      <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
-      </a>
-      <a class="social-link" href="https://twitter.com/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.258 5.63 5.906-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        X / Twitter
-      </a>
-      <a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Facebook
-      </a>
-      <a class="social-link" href="mailto:info@arthouseam.com">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Get in Touch
-      </a>
-    </div>
-  </section>
-
-  <!-- ── Footer ─────────────────────────────────────────────── -->
-  <footer class="page-footer">
-    <p class="footer-wordmark">Art<em>house</em> AM</p>
-    <p class="footer-meta">
-      WPAT 930 AM · New York, NY<br>
-      <a href="https://www.wpat930am.com/" target="_blank" rel="noopener">wpat930am.com</a>
-      &nbsp;·&nbsp;
-      <a href="https://publicfiles.fcc.gov/am-profile/WPAT" target="_blank" rel="noopener">FCC Public File</a><br>
-      &copy; 2025 Arthouse AM
-    </p>
-  </footer>
-
-  <script>
-    // ── Config ──────────────────────────────────────────────
-    // Direct Icecast stream (no proxy needed for audio)
-    const STREAM_URL = 'https://video1.getstreamhosting.com:2000/public/8288-4';
-
-    // Now Playing metadata endpoint.
-    // Leave empty to use direct Icecast stats.
-    // Once you deploy the Node server to Render, update to:
-    //   'https://arthouse-stream.onrender.com/now-playing'
-    const META_URL = 'https://arthouse-stream.onrender.com/now-playing';
-
-    // Direct Icecast stats URL (used when META_URL is empty)
-    const ICECAST_STATS = 'https://video1.getstreamhosting.com:2000/status-json.xsl';
-
-    // ── DOM refs ────────────────────────────────────────────
-    const playBtn     = document.getElementById('playBtn');
-    const playerEl    = document.getElementById('player');
-    const volumeEl    = document.getElementById('volume');
-    const statusDot   = document.getElementById('statusDot');
-    const statusLabel = document.getElementById('statusLabel');
-    const statusText  = document.getElementById('statusText');
-    const waveformEl  = document.getElementById('waveform');
-    const errorMsg    = document.getElementById('errorMsg');
-    const trackTicker = document.getElementById('trackTicker');
-
-    let audio = null;
-    let playing = false;
-    let metaInterval = null;
-    let bars = [];
-
-    // ── Waveform bars ───────────────────────────────────────
-    const barCount = 18;
-    for (let i = 0; i < barCount; i++) {
-      const bar = document.createElement('div');
-      bar.className = 'waveform-bar';
-      const min = 3 + Math.random() * 5;
-      const max = 12 + Math.random() * 20;
-      bar.style.setProperty('--min', min + 'px');
-      bar.style.setProperty('--max', max + 'px');
-      bar.style.setProperty('--dur', (0.55 + Math.random() * 0.7).toFixed(2) + 's');
-      bar.style.height = min + 'px';
-      bar.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
-      waveformEl.appendChild(bar);
-      bars.push(bar);
-    }
-
-    // ── Status helper ───────────────────────────────────────
-    function setStatus(state) {
-      statusDot.className = 'status-dot';
-      statusText.className = 'status-text';
-      if (state === 'loading') {
-        statusLabel.textContent = 'Connecting…';
-        playBtn.classList.add('loading');
-      } else if (state === 'live') {
-        statusLabel.textContent = 'Live';
-        statusDot.classList.add('live');
-        statusText.classList.add('live');
-        playBtn.classList.remove('loading');
-        bars.forEach(b => b.classList.add('active'));
-      } else if (state === 'paused') {
-        statusLabel.textContent = 'Paused';
-        playBtn.classList.remove('loading');
-        bars.forEach(b => b.classList.remove('active'));
-      } else {
-        statusLabel.textContent = 'Ready';
-        playBtn.classList.remove('loading');
-        bars.forEach(b => b.classList.remove('active'));
-      }
-    }
-
-    // ── Now Playing metadata ─────────────────────────────────
-    async function fetchNowPlaying() {
-      try {
-        const url = META_URL || ICECAST_STATS;
-        const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
-        if (!res.ok) return;
-        const data = await res.json();
-
-        let title = null, artist = null;
-
-        if (META_URL) {
-          // Custom Node server format
-          title  = data.title  || null;
-          artist = data.artist || null;
-        } else {
-          // Raw Icecast stats format
-          const icestats = data.icestats || {};
-          const rawSources = icestats.source || [];
-          const sources = Array.isArray(rawSources) ? rawSources : [rawSources];
-          const source = sources.find(s => s?.listenurl?.includes('8288-4')) || sources[0] || {};
-          title  = source.title  || null;
-          artist = source.artist || null;
-        }
-
-        if (title || artist) {
-          trackTicker.textContent = [artist, title].filter(Boolean).join(' — ');
-        }
-      } catch (_) { /* silent fail */ }
-    }
-
-    function startMeta() {
-      fetchNowPlaying();
-      metaInterval = setInterval(fetchNowPlaying, 15000);
-    }
-
-    function stopMeta() {
-      clearInterval(metaInterval);
-      metaInterval = null;
-    }
-
-    // ── Play / pause ─────────────────────────────────────────
-    function togglePlay() {
-      errorMsg.classList.remove('visible');
-      if (!audio) {
-        audio = new Audio();
-        audio.crossOrigin = 'anonymous';
-        audio.volume = parseFloat(volumeEl.value);
-
-        audio.addEventListener('playing', () => {
-          playing = true;
-          playerEl.classList.add('playing');
-          setStatus('live');
-          startMeta();
-        });
-
-        audio.addEventListener('pause', () => {
-          playing = false;
-          playerEl.classList.remove('playing');
-          setStatus('paused');
-          stopMeta();
-        });
-
-        audio.addEventListener('waiting', () => setStatus('loading'));
-        audio.addEventListener('stalled', () => setStatus('loading'));
-
-        audio.addEventListener('error', () => {
-          playing = false;
-          playerEl.classList.remove('playing');
-          setStatus('ready');
-          errorMsg.classList.add('visible');
-          stopMeta();
-          audio = null;
-        });
-      }
-
-      if (!playing) {
-        setStatus('loading');
-        audio.src = STREAM_URL + '?t=' + Date.now();
-        audio.play().catch(() => {
-          setStatus('ready');
-          errorMsg.classList.add('visible');
-        });
-      } else {
-        audio.pause();
-        audio.src = '';
-      }
-    }
-
-    playBtn.addEventListener('click', togglePlay);
-
-    volumeEl.addEventListener('input', () => {
-      if (audio) audio.volume = parseFloat(volumeEl.value);
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.code === 'Space' && e.target === document.body) {
-        e.preventDefault();
-        togglePlay();
-      }
-    });
-  </script>
-
-</body>
-</html>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Arthouse AM · 930</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+    <style>
+          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+          :root {
+                  --cream: #f5f0e8;
+                  --ink: #1a1410;
+                  --rust: #c94b2a;
+                  --gold: #b8922a;
+                  --warm-gray: #8a7f74;
+                  --paper: #ede8de;
+          }
+
+          html, body {
+                  background: var(--cream);
+                  color: var(--ink);
+                  font-family: 'DM Mono', monospace;
+                  overflow-x: hidden;
+          }
+
+          /* Grain overlay */
+          body::before {
+                  content: '';
+                  position: fixed;
+                  inset: 0;
+                  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+                  pointer-events: none;
+                  z-index: 100;
+                  opacity: 0.6;
+          }
+
+          /* Decorative rule lines */
+          .rule-top, .rule-bottom {
+                  position: fixed; left: 0; right: 0; height: 1px;
+                  background: var(--ink); opacity: 0.15;
+          }
+          .rule-top { top: 24px; }
+          .rule-bottom { bottom: 24px; }
+          .rule-left, .rule-right {
+                  position: fixed; top: 0; bottom: 0; width: 1px;
+                  background: var(--ink); opacity: 0.15;
+          }
+          .rule-left { left: 24px; }
+          .rule-right { right: 24px; }
+
+          /* Corner marks */
+          .corner { position: fixed; width: 12px; height: 12px; opacity: 0.3; }
+          .corner::before, .corner::after { content: ''; position: absolute; background: var(--ink); }
+          .corner--tl { top: 20px; left: 20px; }
+          .corner--tr { top: 20px; right: 20px; }
+          .corner--bl { bottom: 20px; left: 20px; }
+          .corner--br { bottom: 20px; right: 20px; }
+          .corner--tl::before, .corner--tr::before, .corner--bl::before, .corner--br::before { width: 100%; height: 1px; top: 0; left: 0; }
+          .corner--tl::after, .corner--tr::after, .corner--bl::after, .corner--br::after { width: 1px; height: 100%; top: 0; left: 0; }
+          .corner--tr::before { left: auto; right: 0; }
+          .corner--tr::after { left: auto; right: 0; }
+          .corner--bl::before { top: auto; bottom: 0; }
+          .corner--bl::after { top: auto; bottom: 0; }
+          .corner--br::before { top: auto; bottom: 0; left: auto; right: 0; }
+          .corner--br::after { top: auto; bottom: 0; left: auto; right: 0; }
+
+          /* Hero section */
+          .hero {
+                  min-height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 60px 24px 80px;
+                  position: relative;
+          }
+
+          /* Main content card */
+          .card {
+                  max-width: 560px;
+                  width: 100%;
+                  text-align: center;
+                  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+
+          @keyframes fadeUp {
+                  from { opacity: 0; transform: translateY(24px); }
+                  to { opacity: 1; transform: translateY(0); }
+          }
+
+          .eyebrow {
+                  font-family: 'DM Mono', monospace;
+                  font-size: 10px;
+                  letter-spacing: 0.25em;
+                  text-transform: uppercase;
+                  color: var(--warm-gray);
+                  margin-bottom: 20px;
+                  animation: fadeUp 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+
+          .wordmark {
+                  font-family: 'Playfair Display', serif;
+                  font-size: clamp(52px, 10vw, 88px);
+                  font-weight: 900;
+                  line-height: 0.92;
+                  letter-spacing: -0.02em;
+                  color: var(--ink);
+                  margin-bottom: 4px;
+                  animation: fadeUp 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+          .wordmark em { font-style: italic; color: var(--rust); }
+
+          .frequency {
+                  font-family: 'DM Mono', monospace;
+                  font-size: clamp(13px, 2.5vw, 16px);
+                  font-weight: 300;
+                  letter-spacing: 0.18em;
+                  color: var(--warm-gray);
+                  margin-bottom: 40px;
+                  animation: fadeUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+
+          /* Divider */
+          .divider {
+                  display: flex; align-items: center; gap: 12px;
+                  margin-bottom: 40px;
+                  animation: fadeUp 0.8s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+          }
+          .divider-line { flex: 1; height: 1px; background: var(--ink); opacity: 0.12; }
+          .divider-diamond { width: 6px; height: 6px; background: var(--rust); transform: rotate(45deg); flex-shrink: 0; }
+
+          /* Player */
+          .player-wrap {
+                  animation: fadeUp 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+                  margin-bottom: 36px;
+          }
+          .player-label {
+                  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+                  color: var(--warm-gray); margin-bottom: 16px;
+          }
+          .player {
+                  background: var(--paper);
+                  border: 1px solid rgba(26,20,16,0.12);
+                  border-radius: 4px;
+                  padding: 28px 32px;
+                  display: flex; align-items: center; gap: 20px;
+                  position: relative; overflow: hidden;
+          }
+          .player::before {
+                  content: ''; position: absolute; top: 0; left: 0; right: 0;
+                  height: 2px; background: var(--rust);
+          }
+
+          /* Waveform visualizer */
+          .waveform { display: flex; align-items: center; gap: 3px; height: 32px; flex: 1; }
+          .waveform-bar { width: 3px; border-radius: 2px; background: var(--ink); opacity: 0.15; transition: opacity 0.3s; }
+          .waveform-bar.active {
+                  animation: wave var(--dur, 0.8s) ease-in-out infinite alternate;
+                  opacity: 0.7;
+          }
+          @keyframes wave {
+                  from { height: var(--min, 4px); }
+                  to { height: var(--max, 28px); }
+          }
+
+          .play-btn {
+                  width: 52px; height: 52px; border-radius: 50%;
+                  border: 1.5px solid var(--ink); background: var(--ink); color: var(--cream);
+                  cursor: pointer; display: flex; align-items: center; justify-content: center;
+                  flex-shrink: 0; transition: background 0.2s, transform 0.15s; position: relative;
+          }
+          .play-btn:hover { background: var(--rust); border-color: var(--rust); transform: scale(1.05); }
+          .play-btn:active { transform: scale(0.97); }
+
+          .play-icon, .pause-icon { position: absolute; transition: opacity 0.15s; }
+          .play-icon { opacity: 1; }
+          .pause-icon { opacity: 0; }
+          .player.playing .play-icon { opacity: 0; }
+          .player.playing .pause-icon { opacity: 1; }
+
+          .player-meta { text-align: left; flex: 1; min-width: 0; }
+          .now-playing-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 4px; }
+          .station-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .track-ticker { font-size: 10px; letter-spacing: 0.05em; color: var(--gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; min-height: 14px; }
+
+          .status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--warm-gray); margin-right: 6px; vertical-align: middle; transition: background 0.3s; }
+          .status-dot.live { background: var(--rust); animation: pulse 1.8s ease-in-out infinite; }
+          @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+          .status-text { font-size: 10px; letter-spacing: 0.1em; color: var(--warm-gray); margin-top: 4px; transition: color 0.3s; }
+          .status-text.live { color: var(--rust); }
+
+          /* Loading spinner */
+          .loading-ring { position: absolute; inset: -2px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: var(--rust); animation: spin 0.8s linear infinite; display: none; }
+          .play-btn.loading .loading-ring { display: block; }
+          .play-btn.loading .play-icon, .play-btn.loading .pause-icon { opacity: 0; }
+          @keyframes spin { to { transform: rotate(360deg); } }
+
+          /* Volume */
+          .volume-row { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(26,20,16,0.08); }
+          .vol-icon { color: var(--warm-gray); flex-shrink: 0; }
+          input[type="range"] { -webkit-appearance: none; flex: 1; height: 2px; background: rgba(26,20,16,0.12); border-radius: 2px; outline: none; cursor: pointer; }
+          input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); cursor: pointer; transition: background 0.2s, transform 0.15s; }
+          input[type="range"]::-webkit-slider-thumb:hover { background: var(--rust); transform: scale(1.2); }
+
+          /* Footer info */
+          .info { font-size: 10px; letter-spacing: 0.12em; color: var(--warm-gray); line-height: 2; animation: fadeUp 0.8s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+          .info a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(26,20,16,0.2); transition: border-color 0.2s, color 0.2s; }
+          .info a:hover { color: var(--rust); border-color: var(--rust); }
+
+          /* Error state */
+          .error-msg { font-size: 10px; letter-spacing: 0.08em; color: var(--rust); margin-top: 10px; display: none; }
+          .error-msg.visible { display: block; }
+
+          /* Scroll hint */
+          .scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0.35; animation: fadeUp 1s 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+          .scroll-hint span { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; }
+          .scroll-hint svg { animation: bounce 2s ease-in-out infinite; }
+          @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+          /* Content sections */
+          .section { max-width: 560px; margin: 0 auto; padding: 80px 24px; }
+          .section-eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); margin-bottom: 20px; }
+          .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 6vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; color: var(--ink); }
+          .section-title em { font-style: italic; color: var(--rust); }
+          .section-body { font-size: 13px; line-height: 1.9; color: var(--warm-gray); letter-spacing: 0.03em; }
+          .section-body p + p { margin-top: 16px; }
+
+          /* Section divider */
+          .section-rule { max-width: 560px; margin: 0 auto; height: 1px; background: var(--ink); opacity: 0.08; }
+
+          /* Page footer */
+          .page-footer { background: var(--ink); color: var(--cream); padding: 48px 24px; text-align: center; }
+          .footer-wordmark { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; letter-spacing: -0.01em; margin-bottom: 12px; }
+          .footer-wordmark em { font-style: italic; color: var(--rust); }
+          .footer-meta { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.35); line-height: 2; }
+          .footer-meta a { color: rgba(245,240,232,0.5); text-decoration: none; border-bottom: 1px solid rgba(245,240,232,0.15); transition: color 0.2s; }
+          .footer-meta a:hover { color: var(--cream); }
+        </style>
+  </head>
+  <body>
+
+      <!-- Frame decorations -->
+      <div class="rule-top"></div>div>
+      <div class="rule-bottom"></div>div>
+      <div class="rule-left"></div>div>
+      <div class="rule-right"></div>div>
+      <div class="corner corner--tl"></div>div>
+      <div class="corner corner--tr"></div>div>
+      <div class="corner corner--bl"></div>div>
+      <div class="corner corner--br"></div>div>
+
+      <!-- Hero -->
+      <section class="hero">
+            <div class="card">
+                    <p class="eyebrow">New York · AM Radio</p>p>
+                    <h1 class="wordmark">Art<em>house</em><br>AM</h1>h1>
+                  <p class="frequency">WPAT · 930 AM · New York</p>p>
+                  <div class="divider">
+                          <div class="divider-line"></div>div>
+                          <div class="divider-diamond"></div>div>
+                          <div class="divider-line"></div>div>
+                  </div>div>
+                  <div class="player-wrap">
+                          <p class="player-label">Live Stream</p>p>
+                          <div class="player" id="player">
+                                    <button class="play-btn" id="playBtn" aria-label="Play / Pause">
+                                                <div class="loading-ring"></div>div>
+                                                <svg class="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                              <path d="M8 5v14l11-7z"/>
+                                                </svg>svg>
+                                                <svg class="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                                </svg>svg>
+                                    </button>button>
+                                    <div class="player-meta">
+                                                <p class="now-playing-label">Now Playing</p>p>
+                                                <p class="station-name" id="stationName">WPAT 930 AM</p>p>
+                                                <p class="track-ticker" id="trackTicker"></p>p>
+                                                <p class="status-text" id="statusText">
+                                                  <span class="status-dot" id="statusDot"></span>span>
+                                                  <span id="statusLabel">Ready</span>span>
+                                                </p>p>
+                                    </div>div>
+                                    <div class="waveform" id="waveform"></div>div>
+                          </div>div>
+                          <div class="volume-row">
+                                    <svg class="vol-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                                    </svg>svg>
+                                    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.85" aria-label="Volume" />
+                                    <svg class="vol-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                    </svg>svg>
+                          </div>div>
+                          <p class="error-msg" id="errorMsg">Stream unavailable — please try again shortly.</p>p>
+                  </div>div>
+                  <div class="divider">
+                          <div class="divider-line"></div>div>
+                          <div class="divider-diamond"></div>div>
+                          <div class="divider-line"></div>div>
+                  </div>div>
+                  <p class="info">
+                    Multicultural Radio Broadcasting · New York, NY<br>
+                    <a href="https://www.wpat930am.com/" target="_blank" rel="noopener">wpat930am.com</a>a> &nbsp;·&nbsp;
+                    <a href="https://publicfiles.fcc.gov/am-profile/WPAT" target="_blank" rel="noopener">FCC Public File</a>a>
+                  </p>p>
+            </div>div>
+          <div class="scroll-hint">
+                <span>Scroll</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--ink)">
+                        <path d="M7 10l5 5 5-5z"/>
+                </svg>svg>
+          </div>div>
+      </section>section>
+  
+    <!-- About -->
+    <div class="section-rule"></div>div>
+    <section class="section">
+        <p class="section-eyebrow">About</p>p>
+        <h2 class="section-title">Where the <em>art of vinyl DJs</em> lives<br>on the dial</h2>h2>
+        <div class="section-body">
+              <p>Arthouse AM is a weekly mix show and blog celebrating the craft of vinyl dance music disc jockeys and a feeble attempt at critical perspective on contemporary DJ culture. Friday Nights at 9pm EST. Broadcasting on WPAT 930 AM out of New York City — No algorithms. No replays. We exist at the intersection of underground culture, dance music, and ephemeral programming that doesn't fit anywhere else.</p>
+              <p>Rhythmically Modulate to AM wavelengths.</p>
+              <p>Every Friday Night at 9p est.</p>
+        </div>div>
+    </section>section>
+  
+    <!-- Footer -->
+    <footer class="page-footer">
+        <p class="footer-wordmark">Art<em>house</em> AM</p>
+        <p class="footer-meta">
+          WPAT 930 AM · New York, NY<br>
+          <a href="https://www.wpat930am.com/" target="_blank" rel="noopener">wpat930am.com</a>a> &nbsp;·&nbsp;
+          <a href="https://publicfiles.fcc.gov/am-profile/WPAT" target="_blank" rel="noopener">FCC Public File</a>a><br>
+          &copy; 2025 Arthouse AM
+        </p>
+    </footer>footer>
+  
+    <script>
+          // Config
+          const STREAM_URL = 'https://video1.getstreamhosting.com:2000/public/8288-4';
+          const META_URL = 'https://arthouse-stream.onrender.com/now-playing';
+          const ICECAST_STATS = 'https://video1.getstreamhosting.com:2000/status-json.xsl';
+
+          // DOM refs
+          const playBtn = document.getElementById('playBtn');
+          const playerEl = document.getElementById('player');
+          const volumeEl = document.getElementById('volume');
+          const statusDot = document.getElementById('statusDot');
+          const statusLabel = document.getElementById('statusLabel');
+          const statusText = document.getElementById('statusText');
+          const waveformEl = document.getElementById('waveform');
+          const errorMsg = document.getElementById('errorMsg');
+          const trackTicker = document.getElementById('trackTicker');
+
+          let audio = null;
+          let playing = false;
+          let metaInterval = null;
+          let bars = [];
+
+          // Waveform bars
+          const barCount = 18;
+          for (let i = 0; i < barCount; i++) {
+                  const bar = document.createElement('div');
+                  bar.className = 'waveform-bar';
+                  const min = 3 + Math.random() * 5;
+                  const max = 12 + Math.random() * 20;
+                  bar.style.setProperty('--min', min + 'px');
+                  bar.style.setProperty('--max', max + 'px');
+                  bar.style.setProperty('--dur', (0.55 + Math.random() * 0.7).toFixed(2) + 's');
+                  bar.style.height = min + 'px';
+                  bar.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+                  waveformEl.appendChild(bar);
+                  bars.push(bar);
+          }
+
+          function setStatus(state) {
+                  statusDot.className = 'status-dot';
+                  statusText.className = 'status-text';
+                  if (state === 'loading') {
+                            statusLabel.textContent = 'Connecting\u2026';
+                            playBtn.classList.add('loading');
+                  } else if (state === 'live') {
+                            statusLabel.textContent = 'Live';
+                            statusDot.classList.add('live');
+                            statusText.classList.add('live');
+                            playBtn.classList.remove('loading');
+                            bars.forEach(b => b.classList.add('active'));
+                  } else if (state === 'paused') {
+                            statusLabel.textContent = 'Paused';
+                            playBtn.classList.remove('loading');
+                            bars.forEach(b => b.classList.remove('active'));
+                  } else {
+                            statusLabel.textContent = 'Ready';
+                            playBtn.classList.remove('loading');
+                            bars.forEach(b => b.classList.remove('active'));
+                  }
+          }
+
+          async function fetchNowPlaying() {
+                  try {
+                            const url = META_URL || ICECAST_STATS;
+                            const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+                            if (!res.ok) return;
+                            const data = await res.json();
+                            let title = null, artist = null;
+                            if (META_URL) {
+                                        title = data.title || null;
+                                        artist = data.artist || null;
+                            } else {
+                                        const icestats = data.icestats || {};
+                                        const rawSources = icestats.source || [];
+                                        const sources = Array.isArray(rawSources) ? rawSources : [rawSources];
+                                        const source = sources.find(s => s?.listenurl?.includes('8288-4')) || sources[0] || {};
+                                        title = source.title || null;
+                                        artist = source.artist || null;
+                            }
+                            if (title || artist) {
+                                        trackTicker.textContent = [artist, title].filter(Boolean).join(' \u2014 ');
+                            }
+                  } catch (_) { /* silent fail */ }
+          }
+
+          function startMeta() { fetchNowPlaying(); metaInterval = setInterval(fetchNowPlaying, 15000); }
+          function stopMeta() { clearInterval(metaInterval); metaInterval = null; }
+
+          function togglePlay() {
+                  errorMsg.classList.remove('visible');
+                  if (!audio) {
+                            audio = new Audio();
+                            audio.crossOrigin = 'anonymous';
+                            audio.volume = parseFloat(volumeEl.value);
+                            audio.addEventListener('playing', () => { playing = true; playerEl.classList.add('playing'); setStatus('live'); startMeta(); });
+                            audio.addEventListener('pause', () => { playing = false; playerEl.classList.remove('playing'); setStatus('paused'); stopMeta(); });
+                            audio.addEventListener('waiting', () => setStatus('loading'));
+                            audio.addEventListener('stalled', () => setStatus('loading'));
+                            audio.addEventListener('error', () => { playing = false; playerEl.classList.remove('playing'); setStatus('ready'); errorMsg.classList.add('visible'); stopMeta(); audio = null; });
+                  }
+                  if (!playing) {
+                            setStatus('loading');
+                            audio.src = STREAM_URL + '?t=' + Date.now();
+                            audio.play().catch(() => { setStatus('ready'); errorMsg.classList.add('visible'); });
+                  } else {
+                            audio.pause();
+                            audio.src = '';
+                  }
+          }
+
+          playBtn.addEventListener('click', togglePlay);
+          volumeEl.addEventListener('input', () => { if (audio) audio.volume = parseFloat(volumeEl.value); });
+          document.addEventListener('keydown', e => {
+                  if (e.code === 'Space' && e.target === document.body) { e.preventDefault(); togglePlay(); }
+          });
+    </script>
+  </body>
+</html>html>
+    </script></em></p></p></span></em>
+  </body>
+    </style></title>
+  </head>
