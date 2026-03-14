@@ -322,9 +322,8 @@
         <p class="section-eyebrow">About</p>
         <h2 class="section-title">Where the <em>art of vinyl DJs</em> lives<br>on the dial</h2>
         <div class="section-body">
-              <p>Arthouse AM is a weekly mix show and blog celebrating the craft of vinyl dance music disc jockeys and a feeble attempt at critical perspective on contemporary DJ culture. Friday Nights at 9pm EST. Broadcasting on WPAT 930 AM out of New York City — No algorithms. No replays. We exist at the intersection of underground culture, dance music, and ephemeral programming that doesn't fit anywhere else.</p>
-              <p>Rhythmically Modulate to AM wavelengths.</p>
-              <p>Every Friday Night at 9p est.</p>
+              <p>Amplitude modulated plastic dance music records blended on Friday nights for 100 continuous mins. Broadcasting via the historic NYC community station tower of WPAT 930 AM. No algorithms. No digital replays.</p>
+              <p>LIVE FOR 120 MIN — EVERY FRIDAY 9P EST</p>
         </div>
     </section>
   
@@ -433,7 +432,7 @@
                             audio = new Audio();
                             audio.crossOrigin = 'anonymous';
                             audio.volume = parseFloat(volumeEl.value);
-                            audio.addEventListener('playing', () => { playing = true; playerEl.classList.add('playing'); setStatus('tlive'); startMeta(); });
+                            audio.addEventListener('playing', () => { playing = true; playerEl.classList.add('playing'); setStatus('live'); startMeta(); });
                             audio.addEventListener('pause', () => { playing = false; playerEl.classList.remove('playing'); setStatus('paused'); stopMeta(); });
                             audio.addEventListener('waiting', () => setStatus('loading'));
                             audio.addEventListener('stalled', () => setStatus('loading'));
