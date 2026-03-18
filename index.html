@@ -434,7 +434,7 @@
                   errorMsg.classList.remove('visible');
                   if (!audio) {
                             audio = new Audio();
-                            audio.crossOrigin = 'anonymous';
+                            
                             audio.volume = parseFloat(volumeEl.value);
                             audio.addEventListener('playing', () => { playing = true; playerEl.classList.add('playing'); setStatus('live'); startMeta(); });
                             audio.addEventListener('pause', () => { playing = false; playerEl.classList.remove('playing'); setStatus('paused'); stopMeta(); });
