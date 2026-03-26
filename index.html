@@ -182,6 +182,21 @@
       margin: 3rem 0;
     }
 
+    .about-lineup {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: clamp(16px, 1.6vw, 19px);
+      color: var(--mid-text);
+      line-height: 2;
+    }
+    .about-lineup li::before {
+      content: '—';
+      color: var(--orange);
+      margin-right: 0.6em;
+    }
+
     .about-premiere {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
@@ -509,10 +524,12 @@
           &mdash; both spinning monthly sets and featuring guest DJs.
         </p>
 
-        <p class="about-body">
-          Opening lineup: &nbsp;&mdash;&nbsp; April 3: Stottle &nbsp;&mdash;&nbsp; April 10: Raw Q &nbsp;&mdash;&nbsp;
-          April 17: TBA (Raw Q guest) &nbsp;&mdash;&nbsp; April 24: TBA (Stottle guest)
-        </p>
+        <ul class="about-lineup">
+          <li>April 3 &mdash; Stottle</li>
+          <li>April 10 &mdash; Raw Q</li>
+          <li>April 17 &mdash; TBA (Raw Q guest)</li>
+          <li>April 24 &mdash; TBA (Stottle guest)</li>
+        </ul>
 
         <p class="about-body">
           Each guest delivers a 90-minute mixtape they&rsquo;d play if no one else existed but them and the dance floor.
