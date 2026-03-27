@@ -393,7 +393,7 @@
     }
     .shop-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 3rem;
     }
     @media (max-width: 600px) {
@@ -635,19 +635,24 @@
   <section class="shop">
     <div class="shop-inner">
       <p class="shop-eyebrow">Merch</p>
-      <h2 class="shop-headline">Take the show with you.</h2>
+      <h2 class="shop-headline">Rep the show</h2>
       <div class="shop-divider"></div>
       <div class="shop-grid">
-
-        
-        <div class="shop-item">
-          <img src="sticker-friday.jpg" alt="ArthouseAM Sticker Pack" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;margin-bottom:1.5rem;">
-          <p class="shop-item-name">Sticker Pack</p>
-          <p class="shop-item-price">$8</p>
-          <p class="shop-item-desc">Rep the show. Limited run. No algorithms, no payola, no AI.</p>
-          <a href="https://arthouseam.gumroad.com/l/ddjfd" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
+          <div class="shop-item">
+            <img src="sticker-friday.jpg" alt="ArthouseAM Sticker Pack" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;margin-bottom:1.5rem;">
+            <p class="shop-item-name">Sticker Pack — Friday</p>
+            <p class="shop-item-price">$8</p>
+            <p class="shop-item-desc">Rep the show. Limited run. No algorithms, no payola, no AI.</p>
+            <a href="https://arthouseam.gumroad.com/l/ddjfd" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
+          </div>
+          <div class="shop-item">
+            <img src="sticker-yo-algo.jpg" alt="ArthouseAM Sticker Pack" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;margin-bottom:1.5rem;">
+            <p class="shop-item-name">Sticker Pack — F Yo Algo</p>
+            <p class="shop-item-price">$8</p>
+            <p class="shop-item-desc">Rep the show. Limited run. No algorithms, no payola, no AI.</p>
+            <a href="https://arthouseam.gumroad.com/l/ddjfd" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
+          </div>
         </div>
-
       </div>
     </div>
   </section>
