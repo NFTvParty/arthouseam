@@ -445,7 +445,63 @@
     .shop-item-link:hover {
       color: var(--cream);
       border-color: var(--cream);
-    }</style>
+    }
+    .connect {
+      background: var(--off-white);
+      padding: 6rem 2rem 7rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    .connect-inner {
+      max-width: 680px;
+      width: 100%;
+    }
+    .connect-number {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(24px, 4vw, 38px);
+      color: var(--black);
+      letter-spacing: 0.05em;
+      margin: 2rem 0 2.5rem;
+    }
+    .connect-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .connect-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.75rem;
+      border: 1px solid var(--black);
+      color: var(--black);
+      transition: background 0.2s, color 0.2s;
+    }
+    .connect-btn:hover {
+      background: var(--black);
+      color: var(--cream);
+    }
+    .connect-btn.primary {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--cream);
+    }
+    .connect-btn.primary:hover {
+      background: #a33a0c;
+      border-color: #a33a0c;
+    }
+    .connect-subtext {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #888;
+      margin-top: 1.5rem;
+    }
+</style>
 </head>
 
 <body>
@@ -637,6 +693,19 @@
   </section>
 
   <!-- Shop Section -->
+    <section class="connect">
+    <div class="connect-inner">
+      <p class="shop-eyebrow">Request Line</p>
+      <h2 class="shop-headline" style="color:var(--black);">Got a request?</h2>
+      <div class="shop-divider" style="background:var(--orange);"></div>
+      <p class="connect-number">1-888-844-2505</p>
+      <div class="connect-actions">
+        <a href="sms:+18888442505?body=Request: " class="connect-btn primary">Text a Request &rarr;</a>
+        <a href="/arthouseam.vcf" download class="connect-btn">Save Contact &darr;</a>
+      </div>
+      <p class="connect-subtext">Fridays at 9PM EST &nbsp;&bull;&nbsp; WPAT 930 AM New York</p>
+    </div>
+  </section>
   <section class="shop">
     <div class="shop-inner">
       <p class="shop-eyebrow">Merch</p>
