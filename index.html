@@ -392,9 +392,14 @@
       margin: 0 0 3rem 0;
     }
     .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 3rem;
+    }
+    .shop-item {
+      width: 100%;
+      max-width: 560px;
     }
     @media (max-width: 600px) {
       .shop-grid { grid-template-columns: 1fr; }
