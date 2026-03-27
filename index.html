@@ -356,7 +356,91 @@
     .site-footer span {
       margin: 0 0.75rem;
     }
-  </style>
+  
+    /* Shop Section */
+    .shop {
+      background: var(--black);
+      padding: 6rem 2rem 7rem;
+      display: flex;
+      justify-content: center;
+    }
+    .shop-inner {
+      max-width: 680px;
+      width: 100%;
+    }
+    .shop-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .shop-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(28px, 3.5vw, 42px);
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 2.5rem;
+    }
+    .shop-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--orange);
+      margin: 0 0 3rem 0;
+    }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    @media (max-width: 600px) {
+      .shop-grid { grid-template-columns: 1fr; }
+    }
+    .shop-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #1a1a1a;
+      margin-bottom: 1.5rem;
+      border: 1px solid #2a2a2a;
+    }
+    .shop-item-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .shop-item-price {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--orange);
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .shop-item-desc {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      color: #999;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .shop-item-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--orange);
+      padding-bottom: 2px;
+    }
+    .shop-item-link:hover {
+      color: var(--cream);
+      border-color: var(--cream);
+    }</style>
 </head>
 
 <body>
@@ -544,6 +628,34 @@
           9pm EST &nbsp;&middot;&nbsp; WPAT 930 AM &nbsp;&middot;&nbsp; New York
         </p>
 
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section class="shop">
+    <div class="shop-inner">
+      <p class="shop-eyebrow">Merch</p>
+      <h2 class="shop-headline">Take the show with you.</h2>
+      <div class="shop-divider"></div>
+      <div class="shop-grid">
+
+        <div class="shop-item">
+          <div class="shop-img-placeholder"></div>
+          <p class="shop-item-name">Handheld AM/FM Radio</p>
+          <p class="shop-item-price">$25</p>
+          <p class="shop-item-desc">Tune in to WPAT 930 AM in NYC every Friday at 9pm. No streaming, no app, no algorithm. Limited to 25 units.</p>
+          <a href="https://trulyjeff.gumroad.com/l/josemb" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
+        </div>
+
+        <div class="shop-item">
+          <div class="shop-img-placeholder"></div>
+          <p class="shop-item-name">Sticker Pack</p>
+          <p class="shop-item-price">$8</p>
+          <p class="shop-item-desc">Rep the show. Limited run. No algorithms, no payola, no AI.</p>
+          <a href="https://trulyjeff.gumroad.com/l/ddjfd" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
+        </div>
+
+      </div>
     </div>
   </section>
 
