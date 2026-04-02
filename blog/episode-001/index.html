@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 001: Stottle — arthouseAM · WPAT 930 AM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange:    #C44B25;
+      --cream:     #EDD9C0;
+      --black:     #000000;
+      --off-white: #F4EAD8;
+      --dark-text: #1C1C1C;
+      --mid-text:  #3A3A3A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      font-family: 'Playfair Display', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ——— HEADER ——————————————————————————————————————————— */
+    .site-header {
+      background: var(--black);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .site-header a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .site-header a:hover  { color: var(--cream); }
+    .site-header .back    { color: var(--orange); }
+    .site-header .back:hover { color: #e06030; }
+
+    /* ——— HERO ——————————————————————————————————————————— */
+    .hero {
+      background: var(--black);
+      padding: 6rem 2.5rem 5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-inner { max-width: 760px; width: 100%; }
+
+    .episode-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.45em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(32px, 5.5vw, 66px);
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 0;
+    }
+    .meta-block { display: flex; flex-direction: column; gap: 0.3rem; }
+    .meta-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+    }
+    .meta-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ——— ESSAY ——————————————————————————————————————————— */
+    .essay {
+      background: var(--off-white);
+      padding: 6rem 2.5rem 7rem;
+      display: flex;
+      justify-content: center;
+    }
+    .essay-inner { max-width: 620px; width: 100%; }
+
+    .essay-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .essay p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(17px, 1.7vw, 20px);
+      color: var(--mid-text);
+      line-height: 1.85;
+      margin-bottom: 1.75rem;
+    }
+    .essay p:last-child { margin-bottom: 0; }
+
+    .essay-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--orange);
+      margin: 3.5rem 0;
+    }
+
+    .essay-byline {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(28,28,28,0.45);
+    }
+
+    /* ——— TRACKLIST ——————————————————————————————————————— */
+    .tracklist {
+      background: #0a0a0a;
+      padding: 6rem 2.5rem 7rem;
+      display: flex;
+      justify-content: center;
+    }
+    .tracklist-inner { max-width: 760px; width: 100%; }
+
+    .tracklist-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .tracklist-note {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 3.5rem;
+      line-height: 1.6;
+    }
+
+    .track {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      align-items: baseline;
+      gap: 0 1.5rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid #1a1a1a;
+    }
+    .track:last-child { border-bottom: 1px solid #1a1a1a; }
+
+    .track-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.2);
+      text-align: right;
+    }
+
+    .track-info { min-width: 0; }
+
+    .track-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(15px, 1.5vw, 18px);
+      color: rgba(255,255,255,0.82);
+      line-height: 1.3;
+    }
+    .track-artist {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.25rem;
+    }
+
+    /* gatekept / unreleased edit — styled differently */
+    .track.gatekept .track-title { color: rgba(255,255,255,0.3); font-style: italic; }
+    .track.gatekept .track-artist { color: rgba(255,255,255,0.2); }
+    .track.gatekept .track-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      opacity: 0.6;
+      text-transform: uppercase;
+      white-space: nowrap;
+      align-self: center;
+    }
+    .track:not(.gatekept) .track-badge { display: none; }
+
+    /* ——— CASSETTE CTA ——————————————————————————————————— */
+    .cassette {
+      background: var(--orange);
+      padding: 5rem 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .cassette-inner {
+      max-width: 620px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .cassette-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+    }
+    .cassette-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(26px, 3.5vw, 40px);
+      color: white;
+      line-height: 1.2;
+    }
+    .cassette-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+    .cassette-btn {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--orange);
+      background: white;
+      padding: 0.9rem 2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cassette-btn:hover {
+      background: var(--cream);
+    }
+    .cassette-sold-out {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+
+    /* ——— NAV FOOTER ——————————————————————————————————————— */
+    .post-nav {
+      background: var(--black);
+      padding: 3rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #111;
+    }
+    .post-nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .post-nav a:hover { color: var(--cream); }
+    .post-nav .next { color: var(--orange); }
+    .post-nav .next:hover { color: #e06030; }
+
+    /* ——— FOOTER ——————————————————————————————————————————— */
+    .site-footer {
+      background: var(--black);
+      border-top: 1px solid #111;
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.2);
+    }
+    .site-footer a { color: rgba(255,255,255,0.2); text-decoration: none; }
+    .site-footer a:hover { color: rgba(255,255,255,0.5); }
+    .site-footer span { margin: 0 0.75rem; }
+
+    @media (max-width: 600px) {
+      .site-header, .hero, .essay, .tracklist, .cassette { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 4rem; padding-bottom: 3rem; }
+      .track { grid-template-columns: 28px 1fr auto; gap: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/blog/" class="back">&#8592; &nbsp;All Mixtapes</a>
+    <a href="/">arthouseAM &nbsp;·&nbsp; WPAT 930 AM</a>
+  </header>
+
+  <!-- ——— HERO ——————————————————————————————————————————— -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="episode-tag">Episode 001</p>
+      <h1 class="hero-headline">Everything I Know About House Music<br>I Learned From Vinyl</h1>
+      <div class="hero-meta">
+        <div class="meta-block">
+          <span class="meta-label">DJ</span>
+          <span class="meta-value">Stottle</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">Aired</span>
+          <span class="meta-value">April 3, 2026 &nbsp;·&nbsp; 9PM EST</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">Station</span>
+          <span class="meta-value">WPAT 930 AM &nbsp;·&nbsp; New York</span>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">Format</span>
+          <span class="meta-value">Vinyl only &nbsp;·&nbsp; 90 min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— ESSAY ——————————————————————————————————————————— -->
+  <section class="essay">
+    <div class="essay-inner">
+      <p class="essay-eyebrow">Liner Notes</p>
+
+      <p>
+        I started buying records before I could drive. The first house record I played in a room full of people
+        told me something I've been trying to say with music ever since — that the right sequence of sounds
+        at the right moment is as close as I've gotten to proof that people belong together.
+      </p>
+
+      <p>
+        When we designed arthouseAM, the constraint we kept coming back to was: what if it only happened once?
+        Not as a stunt. Not as a provocation about streaming culture. But because that's actually how this
+        music was built to be heard — in a room, in a moment, with people who made the choice to show up.
+        A signal going out from a tower that's been standing in the Meadowlands since 1941, reaching anyone
+        in New York with an AM radio. That's not nostalgia. That's an argument about what presence means.
+      </p>
+
+      <p>
+        The set I played Friday night is a house music argument. The kind you can't win with words — only
+        with what you put next to what, and when, and at what volume. Each record I pulled is a claim:
+        this belongs next to that. This record from 1987 belongs in the same sentence as this one from 2019.
+        The bassline from a Chicago pressing and the chord from a studio in East London say the same thing
+        differently, and when they're thirty seconds apart in a mix they make each other true.
+      </p>
+
+      <p>
+        A few edits I made myself aren't listed below — not to be precious about it, but because they don't
+        have names yet and they aren't finished. The rest is as honest a tracklist as I can give you.
+      </p>
+
+      <p>
+        The mix aired once. If you were in New York with a radio on Friday, you heard it. If you weren't,
+        you're holding the next best thing.
+      </p>
+
+      <div class="essay-rule"></div>
+      <p class="essay-byline">— Stottle &nbsp;·&nbsp; April 2026</p>
+    </div>
+  </section>
+
+  <!-- ——— TRACKLIST ——————————————————————————————————————— -->
+  <section class="tracklist">
+    <div class="tracklist-inner">
+      <p class="tracklist-eyebrow">Tracklist</p>
+      <p class="tracklist-note">
+        DJs on arthouseAM are permitted to withhold a small number of tracks — personal edits,
+        unreleased material, or records we're not ready to name yet. Those are marked below.
+      </p>
+
+      <!-- =====================================================
+           TRACKLIST — replace placeholder entries with real data
+           Format for a normal track:
+              <div class="track">
+                <span class="track-num">01</span>
+                <div class="track-info">
+                  <p class="track-title">Track Title</p>
+                  <p class="track-artist">Artist Name</p>
+                </div>
+                <span></span>
+              </div>
+
+           Format for a gatekept / unreleased edit:
+              <div class="track gatekept">
+                <span class="track-num">07</span>
+                <div class="track-info">
+                  <p class="track-title">[Stottle edit]</p>
+                  <p class="track-artist">—</p>
+                </div>
+                <span class="track-badge">Edit</span>
+              </div>
+           ===================================================== -->
+
+      <div class="track">
+        <span class="track-num">01</span>
+        <div class="track-info">
+          <p class="track-title">Track Title</p>
+          <p class="track-artist">Artist · Label, Year</p>
+        </div>
+        <span></span>
+      </div>
+
+      <div class="track">
+        <span class="track-num">02</span>
+        <div class="track-info">
+          <p class="track-title">Track Title</p>
+          <p class="track-artist">Artist · Label, Year</p>
+        </div>
+        <span></span>
+      </div>
+
+      <div class="track">
+        <span class="track-num">03</span>
+        <div class="track-info">
+          <p class="track-title">Track Title</p>
+          <p class="track-artist">Artist · Label, Year</p>
+        </div>
+        <span></span>
+      </div>
+
+      <div class="track gatekept">
+        <span class="track-num">04</span>
+        <div class="track-info">
+          <p class="track-title">[Stottle edit]</p>
+          <p class="track-artist">—</p>
+        </div>
+        <span class="track-badge">Edit</span>
+      </div>
+
+      <div class="track">
+        <span class="track-num">05</span>
+        <div class="track-info">
+          <p class="track-title">Track Title</p>
+          <p class="track-artist">Artist · Label, Year</p>
+        </div>
+        <span></span>
+      </div>
+
+      <!-- Add remaining tracks following the same pattern -->
+
+    </div>
+  </section>
+
+  <!-- ——— CASSETTE CTA ——————————————————————————————————— -->
+  <section class="cassette">
+    <div class="cassette-inner">
+      <p class="cassette-eyebrow">Limited Edition</p>
+      <h2 class="cassette-headline">Episode 001 — Cassette</h2>
+      <p class="cassette-sub">
+        Hand-numbered. 90-minute black no-window tape.<br>
+        Uncut house music mixtape. Mixed by Stottle.<br>
+        33 copies online &nbsp;·&nbsp; 12 at A1 &amp; Academy Records &nbsp;·&nbsp; 45 total.
+      </p>
+      <!-- When sold out, replace the button with the sold-out line below -->
+      <a href="https://arthouseam.gumroad.com" class="cassette-btn" target="_blank" rel="noopener">
+        Buy the Cassette &nbsp;&rarr;
+      </a>
+      <!-- <p class="cassette-sold-out">Sold Out</p> -->
+    </div>
+  </section>
+
+  <!-- ——— POST NAVIGATION ————————————————————————————————— -->
+  <nav class="post-nav">
+    <a href="/blog/">&#8592; &nbsp;All Mixtapes</a>
+    <a href="/blog/episode-002/" class="next">Episode 002: Raw Q &nbsp;&rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <a href="/">arthouseAM</a>
+    <span>&middot;</span>
+    <a href="/blog/">Mixtapes</a>
+    <span>&middot;</span>
+    <a href="/privacy-policy.html">Privacy</a>
+    <span>&middot;</span>
+    <a href="/terms.html">Terms</a>
+  </footer>
+
+</body>
+</html>
