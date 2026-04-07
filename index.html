@@ -508,6 +508,67 @@
     .site-header a:hover { color: var(--cream); }
     .site-header .ep-link { color: var(--orange); }
     .site-header .ep-link:hover { color: #e06030; }
+
+
+    /* ––– ABOUT + SMS OPT-IN –––––––––––––––––––––––––––––––––––––––––– */
+    .about-strip {
+      background: var(--black);
+      border-top: 1px solid #1a1a1a;
+      padding: 4rem 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .about-strip-inner { max-width: 680px; width: 100%; }
+    .about-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+    }
+    .about-body {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.75rem;
+    }
+    .about-body a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+    .about-body a:hover { color: var(--cream); }
+    .sms-section {
+      background: #080808;
+      border-top: 1px solid #1a1a1a;
+      padding: 5rem 2rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    .sms-inner { max-width: 520px; width: 100%; }
+    .sms-keyword {
+      font-family: 'Space Mono', monospace;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .sms-keyword span { color: var(--orange); }
+    .sms-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 2rem;
+    }
+    .sms-fine {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.2);
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 
@@ -740,7 +801,26 @@
     </div>
   </section>
 
+<section class="about-strip" id="about">
+  <div class="about-strip-inner">
+    <p class="about-eyebrow">About</p>
+    <p class="about-body">arthouseAM is a weekly vinyl-only House Music radio program airing Friday nights on <strong style="color:rgba(255,255,255,0.7);">WPAT 930 AM New York</strong>. Produced and hosted by Stottle. A project of <strong style="color:rgba(255,255,255,0.7);">Truly Untitled NY Inc.</strong></p>
+    <p class="about-body">For inquiries: <a href="mailto:jeff@trulyuntitled.com">jeff@trulyuntitled.com</a></p>
+  </div>
+</section>
+
+<section class="sms-section" id="sms">
+  <div class="sms-inner">
+    <p class="about-eyebrow">Friday Night Reminders</p>
+    <p class="sms-keyword">Text <span>AHAM</span></p>
+    <p class="sms-sub">to (888) 844-2505</p>
+    <p class="about-body" style="text-align:center;">Get a text reminder before each show. US only.</p>
+    <p class="sms-fine">Message and data rates may apply &nbsp;&middot;&nbsp; Approx. 1 message per week<br>Reply STOP to unsubscribe &nbsp;&middot;&nbsp; Reply HELP for assistance<br>arthouseAM &nbsp;&middot;&nbsp; Truly Untitled NY Inc. &nbsp;&middot;&nbsp; New York, NY</p>
+  </div>
+</section>
+
 <footer class="site-footer">
+    <p style="margin-bottom:0.6rem;color:rgba(255,255,255,0.18);">arthouseAM &nbsp;&middot;&nbsp; Truly Untitled NY Inc. &nbsp;&middot;&nbsp; New York, NY</p>
     <a href="/privacy-policy.html">Privacy Policy</a>
     <span>&middot;</span>
     <a href="/terms.html">Terms of Service</a>
