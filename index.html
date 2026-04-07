@@ -501,12 +501,24 @@
       color: #888;
       margin-top: 1.5rem;
     }
-</style>
+
+    /* ––– SITE HEADER –––––––––––––––––––––––––––––––––––––––––––––– */
+    .site-header { background: var(--black); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1a1a1a; }
+    .site-header a { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.35); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .site-header a:hover { color: var(--cream); }
+    .site-header .ep-link { color: var(--orange); }
+    .site-header .ep-link:hover { color: #e06030; }
+  </style>
 </head>
 
 <body>
 
-  <!-- âââ HERO âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <header class="site-header">
+    <a href="/blog/episode-001/" class="ep-link">Episode 001: Stottle &nbsp;&rarr;</a>
+    <a href="/blog/">All Mixtapes</a>
+  </header>
+
+    <!-- âââ HERO âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
   <section class="hero">
 
     <svg class="logo-img" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
@@ -707,27 +719,7 @@
       <p class="connect-subtext">Fridays at 9PM EST &nbsp;&bull;&nbsp; WPAT 930 AM New York</p>
     </div>
   </section>
-  <section class="shop">
-    <div class="shop-inner">
-      <p class="shop-eyebrow">Merch</p>
-      <h2 class="shop-headline">Rep the show</h2>
-      <div class="shop-divider"></div>
-      <div class="shop-grid">
-          <div class="shop-item">
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:1.5rem;background:#111;padding:0.75rem;border-radius:4px;">
-              <img src="sticker-friday.jpg" alt="Friday sticker" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;border:2px solid #fff;box-sizing:border-box;">
-              <img src="sticker-yo-algo.jpg" alt="F Yo Algo sticker" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;border:2px solid #fff;box-sizing:border-box;">
-              <img src="sticker-mystery.jpg" alt="Mystery sticker" style="width:100%;aspect-ratio:1/1;object-fit:contain;background:#111;border:2px solid #fff;box-sizing:border-box;">
-            </div>
-            <p class="shop-item-name">Sticker Pack</p>
-            <p class="shop-item-price">$10</p>
-            <p class="shop-item-desc">3 stickers. LTD run of 100.</p>
-            <a href="https://arthouseam.gumroad.com/l/ddjfd" class="shop-item-link" target="_blank" rel="noopener">Get yours &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
 
   <footer class="site-footer">
