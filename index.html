@@ -787,7 +787,7 @@
         <a href="/arthouseam.vcf" download class="connect-btn">Save Contact &darr;</a>
       </div>
       <p class="connect-subtext">Fridays at 9PM EST &nbsp;&bull;&nbsp; WPAT 930 AM New York</p>
-      <p class="connect-now">On Air Now &nbsp;&middot;&nbsp; WPAT 930 AM New York</p>
+      <p class="connect-now">Next show: Friday, April 10 &nbsp;&middot;&nbsp; 9PM EST</p>
     </div>
   </section>
   
@@ -836,6 +836,26 @@
     <a href="/terms.html">Terms of Service</a>
   </footer>
 
+
+  <script>
+    (function () {
+      function updateLiveStatus() {
+        var nyStr = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+        var ny = new Date(nyStr);
+        var isLive = ny.getDay() === 5 && ny.getHours() >= 21 && ny.getHours() < 23;
+        var badge = document.querySelector('.live-badge');
+        var cn = document.querySelector('.connect-now');
+        if (isLive) {
+          if (badge) badge.style.display = '';
+          if (cn) cn.innerHTML = 'On Air Now &nbsp;&middot;&nbsp; WPAT 930 AM New York';
+        } else {
+          if (badge) badge.style.display = 'none';
+          if (cn) cn.innerHTML = 'Next show: Friday, April 10 &nbsp;&middot;&nbsp; 9PM EST';
+        }
+      }
+      updateLiveStatus();
+    })();
+  </script>
 </body>
 
 </html>
