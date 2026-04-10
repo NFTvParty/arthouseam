@@ -78,6 +78,18 @@
       .hero { padding-top: 4rem; padding-bottom: 3rem; }
       .track { grid-template-columns: 28px 1fr auto; gap: 0 1rem; }
     }
+
+    /* ── Anthology Notes ──────────────────────────────────── */
+    .track.has-note { cursor: pointer; }
+    .track.has-note:hover { background: rgba(255,255,255,0.025); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; border-radius: 3px; }
+    .note-toggle { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.18); transition: color 0.2s, transform 0.25s; line-height: 1; padding-top: 2px; user-select: none; flex-shrink: 0; }
+    .track.has-note:hover .note-toggle, .track.open .note-toggle { color: var(--orange); }
+    .track.open .note-toggle { transform: rotate(45deg); }
+    .track-note { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding-top 0.3s ease; padding-top: 0; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.45); font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+    .track.open .track-note { max-height: 2000px; padding-top: 0.9rem; }
+    .track-note a { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; font-style: normal; }
+    .track-note a:hover { opacity: 0.75; }
+    .track-note .note-rule { display: block; width: 30px; height: 1px; background: rgba(255,255,255,0.12); margin: 0.75rem 0; }
   </style>
 </head>
 <body>
@@ -111,22 +123,26 @@
   <section class="tracklist">
     <div class="tracklist-inner">
       <p class="tracklist-eyebrow">Tracklist</p>
-      <p class="tracklist-note">DJs on arthouseAM are permitted to withhold a small number of tracks — personal edits, unreleased material, or records we’re not ready to name yet. Those are marked below.</p>
-      <div class="track svpc">
+      <p class="tracklist-note">DJs on arthouseAM are permitted to withhold a small number of tracks — personal edits, unreleased material, or records we're not ready to name yet. Those are marked below.</p>
+      <div class="track has-note svpc">
         <span class="track-num">01</span>
         <div class="track-info">
           <p class="track-title">Nervous Acid</p>
           <p class="track-artist">Bobby Konders · NuGroove, 1990</p>
           <div class="blend-item">
-            <p class="track-title">Jesse’s Speech</p>
+            <p class="track-title">Jesse's Speech</p>
             <p class="track-artist">Jovonn · Next Moov, 2025</p>
           </div>
-        </div>
+        
+          <div class="track-note">A convergence of cosmic forces compelled me deeply to start the musical conversation here. “Jesse&#8217;s Speech” by Jovonn had come out just a few months earlier and was the first time I remember hearing that voice used in a proper House context. If you aren&#8217;t over 50 years old, it's hard to articulate Jesse Jackson&#8217;s place in pop culture, post-MLK and pre-internet. <a href="https://youtu.be/wB1z85zeCXY?si=ZQOleBhXRlxEK6FC" target="_blank" rel="noopener">I remember being locked in to Sesame Street in an unfamiliar way as a kid when I heard his refrain.</a> I became obsessed with “power beyond social and economic power, something <em>vital and missing</em>,” but especially juxtaposed with the uplifting chorus of “morin’ had to come” at the end of the speech. So I extracted the parts I wanted and strung them together over some drums to use more as a beatapella. And once armed with those words I needed a proper instrumental underneath, just like Farley Jackmaster Funk taught us in Dallas in 1987. <a href="https://soundcloud.com/stottle/farley-jmf-mlk-edit" target="_blank" rel="noopener">That moment — “I Have A Dream” over Nitro Deluxe&#8217;s “Let&#8217;s Get Brutal” — rewired my brain forever.</a> So I asked myself: how could I make a NY version of that moment today? Bobby Konders’ “Nervous Acid” was an almost instantaneous answer. That NuGroove era holds a special place in my DJ heart. Two dudes crossed over, stepped back, launched at 126 BPM like we were at The Shelter in 1999.</div></div>
         <span class="track-badge">SVPC</span>
       </div>
-      <div class="track"><span class="track-num">02</span><div class="track-info"><p class="track-title">Track the House</p><p class="track-artist">Femme Fion · DJ International, 1986</p></div><span></span></div>
-      <div class="track"><span class="track-num">03</span><div class="track-info"><p class="track-title">Joyful Noise</p><p class="track-artist">Stonie Blue &amp; Stephen Carmona · Dolfin Records, 2026</p></div><span></span></div>
-      <div class="track"><span class="track-num">04</span><div class="track-info"><p class="track-title">Take 2</p><p class="track-artist">JT Donaldson · Dolfin Records, 2026</p></div><span></span></div>
+      <div class="track has-note"><span class="track-num">02</span><div class="track-info"><p class="track-title">Track the House</p><p class="track-artist">Femme Fion · DJ International, 1986</p></div><span></span>
+          <div class="track-note">A timeless Chicago DJ tool — lets you get out of something quickly with an iconic break, and get back into something else just as fast as the title might imply.</div></div>
+      <div class="track has-note"><span class="track-num">03</span><div class="track-info"><p class="track-title">Joyful Noise</p><p class="track-artist">Stonie Blue &amp; Stephen Carmona · Dolfin Records, 2026</p></div><span></span>
+          <div class="track-note">The newest song of the mixtape, just a few weeks out on wax at the time of taping. It felt pre-made for this particular set the moment I got it. Stonie and the Dolfin crew are amongst my most favorite contemporary producers — and Joyful Noise felt like a call and response to the Jesse&#8217;s Speech edit.</div></div>
+      <div class="track has-note"><span class="track-num">04</span><div class="track-info"><p class="track-title">Take 2</p><p class="track-artist">JT Donaldson · Dolfin Records, 2026</p></div><span class="note-toggle">+</span>
+          <div class="track-note">As I was saying about Dolfin… but my relationship with Mr. Donaldson goes back so far that we used to call him &#8220;Youngblood&#8221; in the early 90s. JT remains not only one of the dopest producers in the game but one of the genuinely best humans I’m lucky to know. And he’s also one of the main reasons the artistry of Rich Medina came into my life — 15, 20 years now? The two are interconnected in my personal timeline forever. So with the political theme embedded, I took the liberty of deconstructing the Brian Jackson / MaW / Rich Medina track Winter in America and laced it right over the JT vibes as if premade.</div></div>
       <div class="track svpc">
         <span class="track-num">05</span>
         <div class="track-info">
@@ -135,25 +151,44 @@
         </div>
         <span class="track-badge">SVPC</span>
       </div>
-      <div class="track"><span class="track-num">06</span><div class="track-info"><p class="track-title">About Love (John Marsh Vocal Mix)</p><p class="track-artist">Roy Davis Jr. · Classic, 2011</p></div><span></span></div>
-      <div class="track"><span class="track-num">07</span><div class="track-info"><p class="track-title">Soul Mood (Extended Mix)</p><p class="track-artist">Raffaele Clavarino · Groove Culture, 2025</p></div><span></span></div>
-      <div class="track"><span class="track-num">08</span><div class="track-info"><p class="track-title">Bliss (Masters at Work Vocal Dub)</p><p class="track-artist">Mutiny · MaW Records, 1999</p></div><span></span></div>
-      <div class="track"><span class="track-num">09</span><div class="track-info"><p class="track-title">Just a Touch Away</p><p class="track-artist">Brooklyn’s Most Wanted · Good Groove, 2025</p></div><span></span></div>
-      <div class="track"><span class="track-num">10</span><div class="track-info"><p class="track-title">Shelter (Dave’s Groove Pt. 1)</p><p class="track-artist">Brand New Heavies · FFRR, 1997</p></div><span></span></div>
-      <div class="track"><span class="track-num">11</span><div class="track-info"><p class="track-title">Serious Game</p><p class="track-artist">Darren Marshall &amp; Jazzmik · Scream Soda Records, 2025</p></div><span></span></div>
-      <div class="track"><span class="track-num">12</span><div class="track-info"><p class="track-title">Dance (Bonus Beats + Club Mix)</p><p class="track-artist">Earth People · Under World Records, 1990</p></div><span></span></div>
-      <div class="track"><span class="track-num">13</span><div class="track-info"><p class="track-title">Jazz Situation</p><p class="track-artist">Kostenko Brothers · Dirty Low Records, 2025</p></div><span></span></div>
-      <div class="track"><span class="track-num">14</span><div class="track-info"><p class="track-title">Confidential Code</p><p class="track-artist">Jazz Documents · NuGroove Records, 1991</p></div><span></span></div>
-      <div class="track"><span class="track-num">15</span><div class="track-info"><p class="track-title">The Answer (Original Mix)</p><p class="track-artist">Herve · Cheap Thrills, 2026</p></div><span></span></div>
-      <div class="track"><span class="track-num">16</span><div class="track-info"><p class="track-title">Warfare</p><p class="track-artist">Chez Damier · Track Mode, 2004</p></div><span></span></div>
-      <div class="track"><span class="track-num">17</span><div class="track-info"><p class="track-title">Verkro (Original Mix)</p><p class="track-artist">Andre Salmon · Not So Secret Music, 2017</p></div><span></span></div>
-      <div class="track"><span class="track-num">18</span><div class="track-info"><p class="track-title">Meant to Be</p><p class="track-artist">Ben Hixon · Dolfin Records, 2026</p></div><span></span></div>
-      <div class="track"><span class="track-num">19</span><div class="track-info"><p class="track-title">Watch Them Come (Green Velvet Remix)</p><p class="track-artist">Men from the Nile feat. Pevenn Everett · Underground Therapy Music, 2023</p></div><span></span></div>
-      <div class="track"><span class="track-num">20</span><div class="track-info"><p class="track-title">Track 1</p><p class="track-artist">Kerri Chandler · Shelter Records, 1993</p></div><span></span></div>
-      <div class="track"><span class="track-num">21</span><div class="track-info"><p class="track-title">From Da House (Original Mix)</p><p class="track-artist">DJ Sneak · Hudd Traxx, 2025</p></div><span></span></div>
-      <div class="track"><span class="track-num">22</span><div class="track-info"><p class="track-title">Tell You (Today) (Original 12" Instrumental Mix)</p><p class="track-artist">Loose Joints · West End Records, 1983</p></div><span></span></div>
-      <div class="track"><span class="track-num">23</span><div class="track-info"><p class="track-title">The Magnificent Dance</p><p class="track-artist">The Clash · Epic Records, 1981</p></div><span></span></div>
-      <div class="track"><span class="track-num">24</span><div class="track-info"><p class="track-title">Get Up, Get Into It, Get Involved Pt. 2</p><p class="track-artist">James Brown · BMI, 1970</p></div><span></span></div>
+      <div class="track has-note"><span class="track-num">06</span><div class="track-info"><p class="track-title">About Love (John Marsh Vocal Mix)</p><p class="track-artist">Roy Davis Jr. · Classic, 2011</p></div><span></span>
+          <div class="track-note">Politics and spirituality. Hope. This track always feels like dancing to hope.</div></div>
+      <div class="track has-note"><span class="track-num">07</span><div class="track-info"><p class="track-title">Soul Mood (Extended Mix)</p><p class="track-artist">Raffaele Clavarino · Groove Culture, 2025</p></div><span></span>
+          <div class="track-note">Clavarino&#8217;s work really only came on my personal radar when I finally added a CDJ to my setup at the crib in late 2024. But when I started collecting .WAVs and wax, his name ended up in my virtual crate on a regular basis. Soul Mood might be my favorite of his joints to date.</div></div>
+      <div class="track has-note"><span class="track-num">08</span><div class="track-info"><p class="track-title">Bliss (Masters at Work Vocal Dub)</p><p class="track-artist">Mutiny · MaW Records, 1999</p></div><span></span>
+          <div class="track-note">Credit here to the homie CB Smoove, who was at the crib for a session and pulled it from my shelves and threw it on out of the blue — and instantly I was in the elevated, clubhouse-style DJ booth of Mick's Bar on Greenville Avenue in Dallas in 1999. I could smell it when I heard those drums, because I played it so much in the day. Blame CB for this being on the mixtape.</div></div>
+      <div class="track has-note"><span class="track-num">09</span><div class="track-info"><p class="track-title">Just a Touch Away</p><p class="track-artist">Brooklyn's Most Wanted · Good Groove, 2025</p></div><span></span>
+          <div class="track-note">Just more proof that while discovery has changed drastically, great House music is still published on the regular.</div></div>
+      <div class="track has-note"><span class="track-num">10</span><div class="track-info"><p class="track-title">Shelter (Dave's Groove Pt. 1)</p><p class="track-artist">Brand New Heavies · FFRR, 1997</p></div><span></span>
+          <div class="track-note">Back to the feeling of hope with this track. And the feeling of raw jealousy when I heard Luke Sardello play it the first time. Shit still goes.</div></div>
+      <div class="track has-note"><span class="track-num">11</span><div class="track-info"><p class="track-title">Serious Game</p><p class="track-artist">Darren Marshall &amp; Jazzmik · Scream Soda Records, 2025</p></div><span></span>
+          <div class="track-note">I do enjoy spoken word House tracks in general, but the phrase &#8220;Art is a serious game, you're playing against the history of people… not just your people&#8221; — with those syncopated Joseph Longo-like drums — was more than enough to get placed right up in this mix.</div></div>
+      <div class="track has-note"><span class="track-num">12</span><div class="track-info"><p class="track-title">Dance (Bonus Beats + Club Mix)</p><p class="track-artist">Earth People · Under World Records, 1990</p></div><span></span>
+          <div class="track-note">My first thought was to play &#8220;Here it Is&#8221; as a clever retort to &#8220;Serious&#8221; game but the music part of that idea didn&#8217;t work, so I pulled out the Dance 12&#8243; and threw on the bonus beats first just to feel if it would… and yeah.</div></div>
+      <div class="track has-note"><span class="track-num">13</span><div class="track-info"><p class="track-title">Jazz Situation</p><p class="track-artist">Kostenko Brothers · Dirty Low Records, 2025</p></div><span></span>
+          <div class="track-note">The first break goes hard enough to be included on that strength alone, but the bounce of this one works all day.</div></div>
+      <div class="track has-note"><span class="track-num">14</span><div class="track-info"><p class="track-title">Confidential Code</p><p class="track-artist">Jazz Documents · NuGroove Records, 1991</p></div><span></span>
+          <div class="track-note">As I mentioned earlier, me and that early 90s NuGroove era. In hindsight I wish I&#8217;d gone with something off the Vandal — Law of the Chants EP rather than Jazz Documents. It's the one track that feels a bit forced to me looking back, but improvisation comes with these flaws.</div></div>
+      <div class="track has-note"><span class="track-num">15</span><div class="track-info"><p class="track-title">The Answer (Original Mix)</p><p class="track-artist">Herve · Cheap Thrills, 2026</p></div><span></span>
+          <div class="track-note">Just good ass new House Music.</div></div>
+      <div class="track has-note"><span class="track-num">16</span><div class="track-info"><p class="track-title">Warfare</p><p class="track-artist">Chez Damier · Track Mode, 2004</p></div><span class="note-toggle">+</span>
+          <div class="track-note">The implied title of this track is &#8220;Spiritual Warfare&#8221; and it's always been one of my favorite &#8220;change the vibe up&#8221; tracks. So it's here.</div></div>
+      <div class="track has-note"><span class="track-num">17</span><div class="track-info"><p class="track-title">Verkro (Original Mix)</p><p class="track-artist">Andre Salmon · Not So Secret Music, 2017</p></div><span></span>
+          <div class="track-note">I hadn&#8217;t heard this one until recently, but my proclivity for Moodymann spoken word tracks combined with radio talk, AND my deep devotion to the band known as Kraftwerk — this came from a cellular level.</div></div>
+      <div class="track has-note"><span class="track-num">18</span><div class="track-info"><p class="track-title">Meant to Be</p><p class="track-artist">Ben Hixon · Dolfin Records, 2026</p></div><span class="note-toggle">+</span>
+          <div class="track-note">More Dolfin. This time on 7&#8243; vinyl. Ben is that dude.</div></div>
+      <div class="track has-note"><span class="track-num">19</span><div class="track-info"><p class="track-title">Watch Them Come (Green Velvet Remix)</p><p class="track-artist">Men from the Nile feat. Pevenn Everett · Underground Therapy Music, 2023</p></div><span></span>
+          <div class="track-note">I blame Sativa for the mis-phrasing of this mix. SMH.</div></div>
+      <div class="track has-note"><span class="track-num">20</span><div class="track-info"><p class="track-title">Track 1</p><p class="track-artist">Kerri Chandler · Shelter Records, 1993</p></div><span class="note-toggle">+</span>
+          <div class="track-note">It wouldn&#8217;t be a NYC House mixtape without KC.</div></div>
+      <div class="track has-note"><span class="track-num">21</span><div class="track-info"><p class="track-title">From Da House (Original Mix)</p><p class="track-artist">DJ Sneak · Hudd Traxx, 2025</p></div><span></span>
+          <div class="track-note">Give me all the long, hypnotic DJ Sneak loops over big drums. Please.</div></div>
+      <div class="track has-note"><span class="track-num">22</span><div class="track-info"><p class="track-title">Tell You (Today) (Original 12" Instrumental Mix)</p><p class="track-artist">Loose Joints · West End Records, 1983</p></div><span></span>
+          <div class="track-note">Arthur Russell was another non-negotiable when it came to inclusion on the first mixtape for this NYC radio show.</div></div>
+      <div class="track has-note"><span class="track-num">23</span><div class="track-info"><p class="track-title">The Magnificent Dance</p><p class="track-artist">The Clash · Epic Records, 1981</p></div><span></span>
+          <div class="track-note">Because I finally found this randomly at the Rough Trade store by 30 Rock last year. And it still rules.</div></div>
+      <div class="track has-note"><span class="track-num">24</span><div class="track-info"><p class="track-title">Get Up, Get Into It, Get Involved Pt. 2</p><p class="track-artist">James Brown · BMI, 1970</p></div><span></span>
+          <div class="track-note">Straight up: I mistimed this mix — not long enough for another full House track, but there was this 7&#8243; James Brown record on display in front of my mixer, and it happened to be the perfect one to end this narrative.</div></div>
     </div>
   </section>
   <section class="cassette">
@@ -173,5 +208,15 @@
     <a href="/">arthouseAM</a><span>&middot;</span><a href="/blog/">Mixtapes</a><span>&middot;</span><a href="/privacy-policy.html">Privacy</a><span>&middot;</span><a href="/terms.html">Terms</a>
   </footer>
   <script src="https://gumroad.com/js/gumroad.js"></script>
+  <script>
+    document.querySelectorAll('.track.has-note').forEach(function(track) {
+      track.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') return;
+        var isOpen = this.classList.contains('open');
+        document.querySelectorAll('.track.open').forEach(function(t) { t.classList.remove('open'); });
+        if (!isOpen) this.classList.add('open');
+      });
+    });
+  </script>
 </body>
 </html>
