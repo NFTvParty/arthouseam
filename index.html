@@ -869,6 +869,25 @@
 
   <script>
     (function () {
+      function getNextFriday(ny) {
+        var day = ny.getDay();
+        var hours = ny.getHours();
+        var daysUntil;
+        if (day === 5 && hours >= 23) {
+          daysUntil = 7;
+        } else if (day === 5) {
+          daysUntil = 0;
+        } else if (day < 5) {
+          daysUntil = 5 - day;
+        } else {
+          daysUntil = 6;
+        }
+        var next = new Date(ny);
+        next.setDate(ny.getDate() + daysUntil);
+        var months = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+        return 'Next show: Friday, ' + months[next.getMonth()] + ' ' + next.getDate() + ' &nbsp;&middot;&nbsp; 9PM EST';
+      }
       function updateLiveStatus() {
         var nyStr = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
         var ny = new Date(nyStr);
@@ -880,7 +899,7 @@
           if (cn) cn.innerHTML = 'On Air Now &nbsp;&middot;&nbsp; WPAT 930 AM New York';
         } else {
           if (badge) badge.style.display = 'none';
-          if (cn) cn.innerHTML = 'Next show: Friday, April 10 &nbsp;&middot;&nbsp; 9PM EST';
+          if (cn) cn.innerHTML = getNextFriday(ny);
         }
       }
       updateLiveStatus();
