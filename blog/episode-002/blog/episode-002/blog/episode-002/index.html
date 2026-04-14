@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 002: Raw Q — arthouseAM · WPAT 930 AM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --orange: #C44B25; --cream: #EDD9C0; --black: #000000; --off-white: #F4EAD8; --dark-text: #1C1C1C; --mid-text: #3A3A3A; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); font-family: 'Playfair Display', Georgia, serif; -webkit-font-smoothing: antialiased; }
+    .site-header { background: var(--black); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1a1a1a; }
+    .site-header a { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.45); text-decoration: none; text-transform: uppercase; }
+    .site-header a:hover { color: var(--cream); }
+    .site-header .back { color: var(--orange); }
+    .site-header .back:hover { color: #e06030; }
+    .hero { background: var(--black); padding: 6rem 2.5rem 5rem; display: flex; justify-content: center; }
+    .hero-inner { max-width: 760px; width: 100%; }
+    .episode-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.45em; color: var(--orange); text-transform: uppercase; margin-bottom: 2rem; }
+    .hero-headline { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-style: italic; font-size: clamp(32px, 5.5vw, 66px); color: var(--cream); line-height: 1.1; margin-bottom: 2.5rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .meta-block { display: flex; flex-direction: column; gap: 0.3rem; }
+    .meta-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: rgba(255,255,255,0.25); text-transform: uppercase; }
+    .meta-value { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.15em; color: rgba(255,255,255,0.65); }
+    .essay { background: var(--off-white); padding: 6rem 2.5rem 7rem; display: flex; justify-content: center; }
+    .essay-inner { max-width: 620px; width: 100%; }
+    .essay-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.35em; color: var(--orange); text-transform: uppercase; margin-bottom: 3rem; }
+    .essay p { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(17px, 1.7vw, 20px); color: var(--mid-text); line-height: 1.85; margin-bottom: 1.75rem; }
+    .essay p:last-child { margin-bottom: 0; }
+    .essay-rule { width: 40px; height: 1px; background: var(--orange); margin: 3.5rem 0; }
+    .essay-byline { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: rgba(28,28,28,0.45); }
+    .tracklist { background: #0a0a0a; padding: 6rem 2.5rem 7rem; display: flex; justify-content: center; }
+    .tracklist-inner { max-width: 760px; width: 100%; }
+    .tracklist-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.4em; color: var(--orange); text-transform: uppercase; margin-bottom: 1rem; }
+    .tracklist-note { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-style: italic; color: rgba(255,255,255,0.25); margin-bottom: 3.5rem; line-height: 1.6; }
+    .track { display: grid; grid-template-columns: 36px 1fr auto; align-items: baseline; gap: 0 1.5rem; padding: 1.1rem 0; border-top: 1px solid #1a1a1a; }
+    .track:last-child { border-bottom: 1px solid #1a1a1a; }
+    .track-num { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: rgba(255,255,255,0.2); text-align: right; }
+    .track-info { min-width: 0; }
+    .track-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(15px, 1.5vw, 18px); color: rgba(255,255,255,0.82); line-height: 1.3; }
+    .track-artist { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-top: 0.25rem; }
+    .track-badge { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--orange); opacity: 0.6; text-transform: uppercase; white-space: nowrap; align-self: center; display: none; }
+    .track-interlude { display: flex; align-items: center; gap: 1.25rem; padding: 2rem 0; border-top: 1px solid #1a1a1a; }
+    .track-interlude-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.4em; color: var(--orange); opacity: 0.55; text-transform: uppercase; white-space: nowrap; }
+    .track-interlude-line { flex: 1; height: 1px; background: #222; }
+    .cassette { background: var(--orange); padding: 5rem 2.5rem; display: flex; justify-content: center; }
+    .cassette-inner { max-width: 620px; width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .cassette-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.4em; color: rgba(255,255,255,0.65); text-transform: uppercase; }
+    .cassette-headline { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-style: italic; font-size: clamp(26px, 3.5vw, 40px); color: white; line-height: 1.2; }
+    .cassette-sub { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .cassette-btn { display: inline-block; margin-top: 0.75rem; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; color: var(--orange); background: white; padding: 0.9rem 2rem; transition: background 0.2s, color 0.2s; }
+    .cassette-btn:hover { background: var(--cream); }
+    .post-nav { background: var(--black); padding: 3rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #111; }
+    .post-nav a { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: rgba(255,255,255,0.3); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .post-nav a:hover { color: var(--cream); }
+    .post-nav .next { color: var(--orange); }
+    .site-footer { background: var(--black); border-top: 1px solid #111; padding: 2rem; text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); }
+    .site-footer a { color: rgba(255,255,255,0.2); text-decoration: none; }
+    .site-footer span { margin: 0 0.75rem; }
+    @media (max-width: 600px) { .site-header, .hero, .essay, .tracklist, .cassette { padding-left: 1.5rem; padding-right: 1.5rem; } .hero { padding-top: 4rem; padding-bottom: 3rem; } .track { grid-template-columns: 28px 1fr auto; gap: 0 1rem; } }
+    .track.has-note { cursor: pointer; }
+    .track.has-note:hover { background: rgba(255,255,255,0.025); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; border-radius: 3px; }
+    .note-toggle { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.18); transition: color 0.2s, transform 0.25s; line-height: 1; padding-top: 2px; user-select: none; flex-shrink: 0; }
+    .track.has-note:hover .note-toggle, .track.open .note-toggle { color: var(--orange); }
+    .track.open .note-toggle { transform: rotate(45deg); }
+    .track-note { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding-top 0.3s ease; padding-top: 0; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.45); font-family: 'Space Mono', monospace; }
+    .track.open .track-note { max-height: 2000px; padding-top: 0.9rem; }
+    .track > .track-note { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/blog/" class="back">&#8592; &nbsp;All Mixtapes</a>
+    <a href="/">arthouseAM &nbsp;&middot;&nbsp; WPAT 930 AM</a>
+  </header>
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="episode-tag">Episode 002</p>
+      <h1 class="hero-headline">The music hip-hop sampled didn&rsquo;t disappear. It just waited to be reintroduced.</h1>
+      <div class="hero-meta">
+        <div class="meta-block"><span class="meta-label">DJ</span><span class="meta-value"><a href="https://www.instagram.com/rawqnyc/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Raw Q</a></span></div>
+        <div class="meta-block"><span class="meta-label">Aired</span><span class="meta-value">April 10, 2026 &nbsp;&middot;&nbsp; 9PM EST</span></div>
+        <div class="meta-block"><span class="meta-label">Station</span><span class="meta-value">WPAT 930 AM &nbsp;&middot;&nbsp; New York</span></div>
+        <div class="meta-block"><span class="meta-label">Format</span><span class="meta-value">Open format &nbsp;&middot;&nbsp; 45s</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="essay">
+    <div class="essay-inner">
+      <p class="essay-eyebrow">Liner Notes</p>
+      <p>The first thing I put on was Parliament. That wasn&rsquo;t an accident.</p>
+      <p>Before hip-hop had a name, it had a sample library &mdash; and a lot of that library starts with George Clinton. The Mothership wasn&rsquo;t just a concept album. It was a blueprint. You can trace a direct line from Mothership Connection to almost anything that followed, which is another way of saying: if you understand Parliament, you understand a lot about why hip-hop sounds the way it sounds.</p>
+      <p>De La Soul shows up four times in this set. I didn&rsquo;t plan that. It happened because when I dug into the crates, De La kept being the answer. They had a way of making records feel like a conversation &mdash; between eras, between artists, between people who might never share a room. That&rsquo;s what I was going for across these two hours.</p>
+      <p>The back half goes deep into the source material: Soul Searchers, Manzel, Asha Puthli, Maceo Parker. These are the records hip-hop producers were reaching for in the dark, at the bottom of dollar bins in stores that don&rsquo;t exist anymore. I wanted to give them their proper moment without the sample attached.</p>
+      <p>Al Hirt was the wild card. If you know, you know.</p>
+      <p>This is the music I grew up on and keep coming back to. It doesn&rsquo;t age because it was never trying to be current. It was trying to be true.</p>
+      <div class="essay-rule"></div>
+      <p class="essay-byline">&mdash; <a href="https://www.instagram.com/rawqnyc/" target="_blank" rel="noopener" style="color:inherit;">Raw Q</a></p>
+    </div>
+  </section>
+  <section class="tracklist">
+    <div class="tracklist-inner">
+      <p class="tracklist-eyebrow">Tracklist</p>
+      <p class="tracklist-note">37 records. Two interludes. One Friday night in New York.</p>
+      <div class="track has-note"><span class="track-num">01</span><div class="track-info"><p class="track-title">Mothership Connection (Star Child)</p><p class="track-artist">Parliament &middot; Casablanca Records, 1975</p><div class="track-note">The only opener. George Clinton&rsquo;s Mothership is where a generation of producers started their education &mdash; an entire sonic cosmology that hip-hop spent the next thirty years unpacking, one sample at a time.</div></div><span class="note-toggle">+</span></div>
+      <div class="track"><span class="track-num">02</span><div class="track-info"><p class="track-title">Ghetto Jam</p><p class="track-artist">Domino &middot; Outburst Records, 1993</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">03</span><div class="track-info"><p class="track-title">Leflaur Leflah Eshkoshka</p><p class="track-artist">Heltah Skeltah &amp; OGC &middot; Duck Down, 1996</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">04</span><div class="track-info"><p class="track-title">Day One feat. Pyrmds</p><p class="track-artist">Benny Reid &middot; 2025</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">05</span><div class="track-info"><p class="track-title">Sour Times</p><p class="track-artist">Portishead &middot; Go! Discs, 1994</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">06</span><div class="track-info"><p class="track-title">Manifest</p><p class="track-artist">Gang Starr &middot; Wild Pitch Records, 1989</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">07</span><div class="track-info"><p class="track-title">If I Ruled the World (Imagine That)</p><p class="track-artist">Nas feat. Lauryn Hill &middot; Columbia Records, 1996</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">08</span><div class="track-info"><p class="track-title">Shakiyla (JRH)</p><p class="track-artist">Poor Righteous Teachers &middot; Profile Records, 1990</p></div><span class="track-badge"></span></div>
+      <div class="track has-note"><span class="track-num">09</span><div class="track-info"><p class="track-title">The Bizness feat. Common</p><p class="track-artist">De La Soul &middot; Tommy Boy, 1996</p><div class="track-note">First of four De La appearances in this set. The collaborative spirit of &ldquo;Stakes Is High&rdquo; era De La &mdash; Common, Mos Def, the whole extended family &mdash; felt like the right entry point into their corner of the universe.</div></div><span class="note-toggle">+</span></div>
+      <div class="track has-note"><span class="track-num">10</span><div class="track-info"><p class="track-title">Harlem Hendoo</p><p class="track-artist">Al Hirt &middot; RCA Victor, 1967</p><div class="track-note">The wild card. A jazz trumpet record from 1967 sitting in the middle of a hip-hop set. If it lands, it lands. If it confuses you, that&rsquo;s fine too.</div></div><span class="note-toggle">+</span></div>
+      <div class="track has-note"><span class="track-num">11</span><div class="track-info"><p class="track-title">I Am I Be feat. Fred Wesley and Maceo Parker</p><p class="track-artist">De La Soul &middot; Tommy Boy, 1993</p><div class="track-note">Maceo Parker and Fred Wesley showing up on a De La Soul record from 1993 is one of those moments where hip-hop&rsquo;s relationship to its source material becomes explicit. Not a sample &mdash; the actual musicians, in the room.</div></div><span class="note-toggle">+</span></div>
+      <div class="track"><span class="track-num">12</span><div class="track-info"><p class="track-title">Pass the Plugs</p><p class="track-artist">De La Soul &middot; Tommy Boy, 1991</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">13</span><div class="track-info"><p class="track-title">Let&rsquo;s Ride</p><p class="track-artist">Q-Tip &middot; Arista Records, 1999</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">14</span><div class="track-info"><p class="track-title">Spread Love (DJ Muro Edit)</p><p class="track-artist">45 King</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">15</span><div class="track-info"><p class="track-title">Whutcha Want?</p><p class="track-artist">Nine &middot; Profile Records, 1995</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">16</span><div class="track-info"><p class="track-title">Breakadawn</p><p class="track-artist">De La Soul &middot; Tommy Boy, 1993</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">17</span><div class="track-info"><p class="track-title">Hey DJ (7&Prime; Version)</p><p class="track-artist">The World Famous Supreme Team &middot; Island Records, 1984</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">18</span><div class="track-info"><p class="track-title">La-Di-Da-Di</p><p class="track-artist">Doug E. Fresh &amp; MC Ricky D &middot; Reality Records, 1985</p></div><span class="track-badge"></span></div>
+      <div class="track has-note"><span class="track-num">19</span><div class="track-info"><p class="track-title">Wildstyle Megamix</p><p class="track-artist">Jorun Bombay &middot; 2026</p><div class="track-note">Jorun Bombay does what the best megamixes always did &mdash; compress decades of history into something that feels like a single statement. A natural bridge before the transition.</div></div><span class="note-toggle">+</span></div>
+      <div class="track-interlude"><span class="track-interlude-line"></span><span class="track-interlude-label">Raw Q Interlude</span><span class="track-interlude-line"></span></div>
+      <div class="track"><span class="track-num">20</span><div class="track-info"><p class="track-title">Five Minutes of Funk</p><p class="track-artist">Whodini &middot; Jive Records, 1984</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">21</span><div class="track-info"><p class="track-title">Inspector Gadget</p><p class="track-artist">Bad Boys feat. K Love &middot; 1984</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">22</span><div class="track-info"><p class="track-title">Paper Thin</p><p class="track-artist">MC Lyte &middot; First Priority Music, 1988</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">23</span><div class="track-info"><p class="track-title">Cool Like That Re-Edit</p><p class="track-artist">Jim Sharp &middot; 2025</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">24</span><div class="track-info"><p class="track-title">Cross the Tracks (We Better Go Back)</p><p class="track-artist">Maceo and the Macks &middot; People Records, 1975</p></div><span class="track-badge"></span></div>
+      <div class="track has-note"><span class="track-num">25</span><div class="track-info"><p class="track-title">Ashley&rsquo;s Roachclip</p><p class="track-artist">The Soul Searchers &middot; Sussex Records, 1974</p><div class="track-note">One of the most sampled records in hip-hop history. Eric B., EPMD, countless others reached into this break. Playing it uncut, in full, without a rap on top &mdash; that&rsquo;s the whole point of this second hour.</div></div><span class="note-toggle">+</span></div>
+      <div class="track"><span class="track-num">26</span><div class="track-info"><p class="track-title">Midnight Theme</p><p class="track-artist">Manzel &middot; Lobo Records, 1979</p></div><span class="track-badge"></span></div>
+      <div class="track has-note"><span class="track-num">27</span><div class="track-info"><p class="track-title">Space Talk</p><p class="track-artist">Asha Puthli &middot; Columbia Records, 1973</p><div class="track-note">Asha Puthli is the kind of artist you find by following a sample backwards. Her voice sits in a frequency that producers kept reaching for across genres and decades. Giving her the proper moment without the sample attached.</div></div><span class="note-toggle">+</span></div>
+      <div class="track"><span class="track-num">28</span><div class="track-info"><p class="track-title">DJ&rsquo;s Delight</p><p class="track-artist">Ingram &middot; Salsoul Records, 1983</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">29</span><div class="track-info"><p class="track-title">You&rsquo;re a Melody</p><p class="track-artist">Aged in Harmony &middot; 2016</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">30</span><div class="track-info"><p class="track-title">Mt. Airy Groove</p><p class="track-artist">Pieces of a Dream &middot; Elektra Records, 1982</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">31</span><div class="track-info"><p class="track-title">Voices Inside My Head</p><p class="track-artist">The Police &middot; A&amp;M Records, 1980</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">32</span><div class="track-info"><p class="track-title">I Can&rsquo;t Go for That (No Can Do)</p><p class="track-artist">Hall &amp; Oates &middot; RCA Records, 1981</p></div><span class="track-badge"></span></div>
+      <div class="track-interlude"><span class="track-interlude-line"></span><span class="track-interlude-label">Raw Q Interlude</span><span class="track-interlude-line"></span></div>
+      <div class="track"><span class="track-num">33</span><div class="track-info"><p class="track-title">The Creator</p><p class="track-artist">Pete Rock &amp; CL Smooth &middot; Elektra Records, 1991</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">34</span><div class="track-info"><p class="track-title">Treat &lsquo;Em Right</p><p class="track-artist">Chubb Rock &middot; Select Records, 1991</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">35</span><div class="track-info"><p class="track-title">Brooklyn Queens</p><p class="track-artist">3rd Bass &middot; Def Jam, 1989</p></div><span class="track-badge"></span></div>
+      <div class="track"><span class="track-num">36</span><div class="track-info"><p class="track-title">Me and Baby Brother</p><p class="track-artist">War &middot; United Artists Records, 1973</p></div><span class="track-badge"></span></div>
+      <div class="track has-note"><span class="track-num">37</span><div class="track-info"><p class="track-title">Space Funk</p><p class="track-artist">Manzel &middot; Lobo Records, 1977</p><div class="track-note">The last word. Two Manzel records bookending the second half &mdash; because some grooves don&rsquo;t need context, they just need volume and time.</div></div><span class="note-toggle">+</span></div>
+    </div>
+  </section>
+  <section class="cassette">
+    <div class="cassette-inner">
+      <p class="cassette-eyebrow">Limited Edition</p>
+      <h2 class="cassette-headline">Episode 002 &mdash; Cassette</h2>
+      <p class="cassette-sub">Hand-numbered. Uncut mixtape by Raw Q.<br>Limited copies available online &nbsp;&middot;&nbsp; and at A1 Records in NYC E Village.</p>
+      <a href="#" class="cassette-btn" target="_blank" rel="noopener">Buy the Cassette &nbsp;&rarr;</a>
+    </div>
+  </section>
+  <nav class="post-nav">
+    <a href="/blog/episode-001/">&#8592; &nbsp;Episode 001: Stottle</a>
+    <a href="/blog/" class="next">All Mixtapes &nbsp;&rarr;</a>
+  </nav>
+  <footer class="site-footer">
+    <a href="/">arthouseAM</a><span>&middot;</span><a href="/blog/">Mixtapes</a><span>&middot;</span><a href="/privacy-policy.html">Privacy</a><span>&middot;</span><a href="/terms.html">Terms</a>
+  </footer>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <script>
+    document.querySelectorAll('.track.has-note').forEach(function(track) {
+      track.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') return;
+        var isOpen = this.classList.contains('open');
+        document.querySelectorAll('.track.open').forEach(function(t) { t.classList.remove('open'); });
+        if (!isOpen) this.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
