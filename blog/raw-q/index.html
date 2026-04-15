@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Raw Q · ArthouseAM · April 24, 2026</title>
+  <meta name="description" content="DJ Raw Q plays open format 45s on ArthouseAM, WPAT 930 AM New York. Full tracklist from April 24, 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #C44B25;
+      --cream: #EDD9C0;
+      --black: #000000;
+      --off-white: #F4EAD8;
+      --dark-text: #1C1C1C;
+      --mid-text: #3A3A3A;
+      --page-bg: #0D0D0D;
+      --track-line: rgba(237, 217, 192, 0.10);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--page-bg);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.12);
+    }
+
+    .site-header a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .site-header a:hover {
+      opacity: 1;
+      color: var(--orange);
+    }
+
+    /* HERO */
+    .episode-hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 40px 56px;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.12);
+    }
+
+    .episode-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 22px;
+    }
+
+    .episode-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 11vw, 100px);
+      font-weight: 900;
+      font-style: italic;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--off-white);
+      margin-bottom: 24px;
+    }
+
+    .episode-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.45;
+    }
+
+    /* INTRO */
+    .episode-intro {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px 56px;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.12);
+    }
+
+    .episode-intro p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.4vw, 22px);
+      line-height: 1.8;
+      color: var(--cream);
+      opacity: 0.88;
+    }
+
+    .episode-intro p em {
+      font-style: italic;
+      color: var(--off-white);
+      opacity: 1;
+    }
+
+    /* TRACKLIST WRAPPER */
+    .tracklist-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 40px 0;
+    }
+
+    .tracklist-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 36px;
+    }
+
+    /* TRACK ROW */
+    .track-row {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--track-line);
+    }
+
+    .track-row:first-of-type {
+      border-top: 1px solid var(--track-line);
+    }
+
+    .track-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--orange);
+      opacity: 0.5;
+      text-align: right;
+      line-height: 1;
+    }
+
+    .track-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .track-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.25;
+    }
+
+    .track-artist {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      opacity: 0.45;
+    }
+
+    .track-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--cream);
+      opacity: 0.28;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* INTERLUDE */
+    .interlude-break {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 32px 0;
+    }
+
+    .interlude-line {
+      flex: 1;
+      height: 1px;
+      background: var(--orange);
+      opacity: 0.25;
+    }
+
+    .interlude-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      max-width: 860px;
+      margin: 60px auto 0;
+      padding: 32px 40px;
+      border-top: 1px solid rgba(237, 217, 192, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-footer p,
+    .site-footer a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      opacity: 0.3;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      opacity: 0.7;
+      color: var(--orange);
+    }
+
+    /* RESPONSIVE */
+    /* CASSETTE SECTION */
+    .cassette-section {
+      border-top: 1px solid rgba(237, 217, 192, 0.12);
+      margin-top: 60px;
+      padding: 60px 40px;
+    }
+
+    .cassette-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .cassette-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 32px;
+    }
+
+    .cassette-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .cassette-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cassette-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--off-white);
+      line-height: 1;
+    }
+
+    .cassette-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.45;
+    }
+
+    .cassette-desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--cream);
+      opacity: 0.4;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .cassette-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-top: 4px;
+    }
+
+    .cassette-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 13px 28px;
+      background: var(--orange);
+      color: var(--off-white);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, opacity 0.2s;
+      width: fit-content;
+    }
+
+    .cassette-btn:hover {
+      background: #a83e1f;
+    }
+
+    @media (max-width: 600px) {
+      .cassette-section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .cassette-card {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-header,
+      .episode-hero,
+      .episode-intro,
+      .tracklist-wrap,
+      .site-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .track-row {
+        grid-template-columns: 26px 1fr auto;
+        gap: 12px;
+      }
+
+      .episode-hero {
+        padding-top: 52px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/">← ArthouseAM</a>
+    <a href="/blog/">All Mixtapes</a>
+  </header>
+
+  <section class="episode-hero">
+    <div class="episode-meta">WPAT 930 AM · New York · April 24, 2026</div>
+    <h1>DJ Raw Q</h1>
+    <div class="episode-sub">Open Format 45s &nbsp;·&nbsp; 9PM Hour &nbsp;·&nbsp; ArthouseAM</div>
+  </section>
+
+  <section class="episode-intro">
+    <p>RAW Q is one of New York's foundational open-format selectors. He doesn't need a theme night — the records are the theme. On this April 24th set for ArthouseAM, he opens with Parliament's <em>Mothership Connection</em> from 1975 and spends the next two hours making the case that hip-hop and funk were always the same conversation. Three De La Soul cuts, Gang Starr, Nas, Poor Righteous Teachers, Q-Tip, Pete Rock &amp; CL Smooth — the canon, played by someone who helped shape it. Two interludes mark the turns: from hip-hop's golden era into the soul and disco underneath it all, then back again to close with Pete Rock and a Manzel space funk to take you home.</p>
+  </section>
+
+  <div class="tracklist-wrap">
+    <div class="tracklist-label">Tracklist</div>
+
+    <!-- SECTION ONE -->
+    <div class="track-row">
+      <span class="track-num">01</span>
+      <div class="track-info">
+        <span class="track-title">Mothership Connection (Star Child)</span>
+        <span class="track-artist">Parliament</span>
+      </div>
+      <span class="track-year">1975</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">02</span>
+      <div class="track-info">
+        <span class="track-title">Ghetto Jam</span>
+        <span class="track-artist">Domino</span>
+      </div>
+      <span class="track-year">1993</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">03</span>
+      <div class="track-info">
+        <span class="track-title">Leflaur Leflah Eshkoshka</span>
+        <span class="track-artist">Heltah Skeltah &amp; OGC</span>
+      </div>
+      <span class="track-year">1996</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">04</span>
+      <div class="track-info">
+        <span class="track-title">Day One feat. Pyrmds</span>
+        <span class="track-artist">Benny Reid</span>
+      </div>
+      <span class="track-year">2025</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">05</span>
+      <div class="track-info">
+        <span class="track-title">Sour Times</span>
+        <span class="track-artist">Portishead</span>
+      </div>
+      <span class="track-year">1994</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">06</span>
+      <div class="track-info">
+        <span class="track-title">Manifest</span>
+        <span class="track-artist">Gang Starr</span>
+      </div>
+      <span class="track-year">1989</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">07</span>
+      <div class="track-info">
+        <span class="track-title">If I Ruled the World</span>
+        <span class="track-artist">Nas feat. Lauryn Hill</span>
+      </div>
+      <span class="track-year">1996</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">08</span>
+      <div class="track-info">
+        <span class="track-title">Shakiyla (JRH)</span>
+        <span class="track-artist">Poor Righteous Teachers</span>
+      </div>
+      <span class="track-year">1990</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">09</span>
+      <div class="track-info">
+        <span class="track-title">The Bizness feat. Common</span>
+        <span class="track-artist">De La Soul</span>
+      </div>
+      <span class="track-year">1996</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">10</span>
+      <div class="track-info">
+        <span class="track-title">Harlem Hendoo</span>
+        <span class="track-artist">Al Hirt</span>
+      </div>
+      <span class="track-year">1967</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">11</span>
+      <div class="track-info">
+        <span class="track-title">I Am I Be feat. Fred Wesley &amp; Maceo Parker</span>
+        <span class="track-artist">De La Soul</span>
+      </div>
+      <span class="track-year">1993</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">12</span>
+      <div class="track-info">
+        <span class="track-title">Pass the Plugs</span>
+        <span class="track-artist">De La Soul</span>
+      </div>
+      <span class="track-year">1991</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">13</span>
+      <div class="track-info">
+        <span class="track-title">Let's Ride</span>
+        <span class="track-artist">Q-Tip</span>
+      </div>
+      <span class="track-year">1999</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">14</span>
+      <div class="track-info">
+        <span class="track-title">Spread Love (DJ Muro Edit)</span>
+        <span class="track-artist">45 King</span>
+      </div>
+      <span class="track-year"></span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">15</span>
+      <div class="track-info">
+        <span class="track-title">Whutcha Want?</span>
+        <span class="track-artist">Nine</span>
+      </div>
+      <span class="track-year">1995</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">16</span>
+      <div class="track-info">
+        <span class="track-title">Breakadawn</span>
+        <span class="track-artist">De La Soul</span>
+      </div>
+      <span class="track-year">1993</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">17</span>
+      <div class="track-info">
+        <span class="track-title">Hey DJ (7&quot; Version)</span>
+        <span class="track-artist">The World Famous Supreme Team</span>
+      </div>
+      <span class="track-year"></span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">18</span>
+      <div class="track-info">
+        <span class="track-title">La-Di-Da-Di</span>
+        <span class="track-artist">Doug E. Fresh</span>
+      </div>
+      <span class="track-year">1986</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">19</span>
+      <div class="track-info">
+        <span class="track-title">Wildstyle Megamix</span>
+        <span class="track-artist">Jorun Bombay</span>
+      </div>
+      <span class="track-year">2026</span>
+    </div>
+
+    <!-- INTERLUDE 1 -->
+    <div class="interlude-break">
+      <div class="interlude-line"></div>
+      <div class="interlude-label">Raw Q Interlude</div>
+      <div class="interlude-line"></div>
+    </div>
+
+    <!-- SECTION TWO -->
+    <div class="track-row">
+      <span class="track-num">20</span>
+      <div class="track-info">
+        <span class="track-title">Five Minutes of Funk</span>
+        <span class="track-artist">Whodini</span>
+      </div>
+      <span class="track-year">1984</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">21</span>
+      <div class="track-info">
+        <span class="track-title">Inspector Gadget</span>
+        <span class="track-artist">Bad Boys feat. K Love</span>
+      </div>
+      <span class="track-year">1984</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">22</span>
+      <div class="track-info">
+        <span class="track-title">Paper Thin</span>
+        <span class="track-artist">MC Lyte</span>
+      </div>
+      <span class="track-year">1988</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">23</span>
+      <div class="track-info">
+        <span class="track-title">Cool Like That (Re-Edit)</span>
+        <span class="track-artist">Jim Sharp</span>
+      </div>
+      <span class="track-year">2025</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">24</span>
+      <div class="track-info">
+        <span class="track-title">Cross the Tracks</span>
+        <span class="track-artist">Maceo and the Macks</span>
+      </div>
+      <span class="track-year">1975</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">25</span>
+      <div class="track-info">
+        <span class="track-title">Ashley's Roachclip</span>
+        <span class="track-artist">The Soul Searchers</span>
+      </div>
+      <span class="track-year">1974</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">26</span>
+      <div class="track-info">
+        <span class="track-title">Midnight Theme</span>
+        <span class="track-artist">Manzel</span>
+      </div>
+      <span class="track-year">1979</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">27</span>
+      <div class="track-info">
+        <span class="track-title">Space Talk</span>
+        <span class="track-artist">Asha Puthli</span>
+      </div>
+      <span class="track-year">1973</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">28</span>
+      <div class="track-info">
+        <span class="track-title">DJs Delight</span>
+        <span class="track-artist">Ingram</span>
+      </div>
+      <span class="track-year">1983</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">29</span>
+      <div class="track-info">
+        <span class="track-title">You're a Melody</span>
+        <span class="track-artist">Aged in Harmony</span>
+      </div>
+      <span class="track-year">2016</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">30</span>
+      <div class="track-info">
+        <span class="track-title">Mt. Airy Groove</span>
+        <span class="track-artist">Pieces of a Dream</span>
+      </div>
+      <span class="track-year">1982</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">31</span>
+      <div class="track-info">
+        <span class="track-title">Voices Inside My Head</span>
+        <span class="track-artist">The Police</span>
+      </div>
+      <span class="track-year">1980</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">32</span>
+      <div class="track-info">
+        <span class="track-title">I Can't Go for That</span>
+        <span class="track-artist">Hall &amp; Oates</span>
+      </div>
+      <span class="track-year">1981</span>
+    </div>
+
+    <!-- INTERLUDE 2 -->
+    <div class="interlude-break">
+      <div class="interlude-line"></div>
+      <div class="interlude-label">Raw Q Interlude</div>
+      <div class="interlude-line"></div>
+    </div>
+
+    <!-- SECTION THREE -->
+    <div class="track-row">
+      <span class="track-num">33</span>
+      <div class="track-info">
+        <span class="track-title">The Creator</span>
+        <span class="track-artist">Pete Rock &amp; CL Smooth</span>
+      </div>
+      <span class="track-year">1991</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">34</span>
+      <div class="track-info">
+        <span class="track-title">Treat 'Em Right</span>
+        <span class="track-artist">Chubb Rock</span>
+      </div>
+      <span class="track-year">1991</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">35</span>
+      <div class="track-info">
+        <span class="track-title">Brooklyn Queens</span>
+        <span class="track-artist">3rd Bass</span>
+      </div>
+      <span class="track-year">1989</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">36</span>
+      <div class="track-info">
+        <span class="track-title">Me and Baby Brother</span>
+        <span class="track-artist">War</span>
+      </div>
+      <span class="track-year">1973</span>
+    </div>
+    <div class="track-row">
+      <span class="track-num">37</span>
+      <div class="track-info">
+        <span class="track-title">Space Funk</span>
+        <span class="track-artist">Manzel</span>
+      </div>
+      <span class="track-year">1977</span>
+    </div>
+
+  </div><!-- /tracklist-wrap -->
+
+  <!-- CASSETTE SHOP SECTION -->
+  <section class="cassette-section">
+    <div class="cassette-inner">
+      <div class="cassette-label">Available Now</div>
+      <div class="cassette-card">
+        <div class="cassette-info">
+          <h2 class="cassette-title">DJ Raw Q</h2>
+          <p class="cassette-sub">ArthouseAM · April 24, 2026</p>
+          <p class="cassette-desc">Hand-numbered cassette &nbsp;·&nbsp; 90 min &nbsp;·&nbsp; Domestic only</p>
+          <p class="cassette-price">$25</p>
+          <a href="GUMROAD_URL_PLACEHOLDER" class="cassette-btn" data-gumroad-overlay-checkout="true">Get yours &nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <footer class="site-footer">
+    <p>ArthouseAM &nbsp;·&nbsp; WPAT 930 AM New York &nbsp;·&nbsp; Fridays 9PM</p>
+    <a href="/">arthouseam.com</a>
+  </footer>
+
+</body>
+</html>
