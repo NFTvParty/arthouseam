@@ -3,274 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mixtapes — arthouseAM · WPAT 930 AM New York</title>
+  <title>All Mixtapes Â· ArthouseAM</title>
+  <meta name="description" content="Every tracklist from ArthouseAM on WPAT 930 AM New York â a weekly vinyl-focused radio program, Fridays at 9PM.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --orange: #C44B25;
-      --cream:  #EDD9C0;
-      --black:  #000000;
+      --cream: #EDD9C0;
+      --black: #000000;
       --off-white: #F4EAD8;
-      --dark-text: #1C1C1C;
-      --mid-text:  #3A3A3A;
+      --page-bg: #0D0D0D;
+      --card-bg: #141414;
+      --card-line: rgba(237, 217, 192, 0.10);
     }
 
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background: var(--black);
-      font-family: 'Playfair Display', Georgia, serif;
-      -webkit-font-smoothing: antialiased;
+      background: var(--page-bg);
+      color: var(--cream);
+      font-family: 'Space Mono', monospace;
+      line-height: 1.6;
     }
 
-    /* ——— HEADER ——————————————————————————————————————————— */
+    /* HEADER */
     .site-header {
-      background: var(--black);
-      padding: 2rem 2.5rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #1a1a1a;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.12);
     }
+
     .site-header a {
       font-family: 'Space Mono', monospace;
       font-size: 11px;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
       text-decoration: none;
-      text-transform: uppercase;
+      opacity: 0.6;
+      transition: opacity 0.2s, color 0.2s;
     }
-    .site-header a:hover { color: var(--cream); }
-    .site-header .home-link { color: var(--orange); }
-    .site-header .home-link:hover { color: #e06030; }
 
-    /* ——— HERO ——————————————————————————————————————————— */
-    .hero {
-      background: var(--black);
-      padding: 6rem 2.5rem 5rem;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-inner { max-width: 760px; width: 100%; }
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.4em;
+    .site-header a:hover {
+      opacity: 1;
       color: var(--orange);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
     }
-    .hero-headline {
-      font-family: 'Playfair Display', Georgia, serif;
+
+    /* PAGE TITLE */
+    .page-hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 40px 56px;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.12);
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 8vw, 72px);
       font-weight: 900;
       font-style: italic;
-      font-size: clamp(42px, 7vw, 88px);
-      color: var(--cream);
-      line-height: 1.0;
-      margin-bottom: 2rem;
-    }
-    .hero-sub {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.35);
-      line-height: 1.8;
-    }
-    .hero-rule {
-      width: 40px;
-      height: 1px;
-      background: var(--orange);
-      margin: 2.5rem 0;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--off-white);
+      margin-bottom: 16px;
     }
 
-    /* ——— EPISODE LIST ——————————————————————————————————— */
-    .episodes {
-      background: var(--black);
-      padding: 0 2.5rem 8rem;
-      display: flex;
-      justify-content: center;
+    .page-hero p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.4;
     }
-    .episodes-inner { max-width: 760px; width: 100%; }
+
+    /* EPISODE LIST */
+    .episode-list {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
 
     .episode-card {
       display: grid;
-      grid-template-columns: 80px 1fr auto;
-      align-items: start;
-      gap: 0 2.5rem;
-      padding: 3rem 0;
-      border-top: 1px solid #1c1c1c;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(237, 217, 192, 0.10);
       text-decoration: none;
-      transition: border-color 0.2s;
-    }
-    .episode-card:hover { border-color: #333; }
-    .episode-card:hover .card-number { color: var(--orange); }
-    .episode-card:hover .card-title  { color: var(--cream); }
-
-    .card-number {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 700;
-      color: #2a2a2a;
-      line-height: 1;
-      transition: color 0.2s;
-      padding-top: 0.1em;
+      transition: opacity 0.2s;
     }
 
-    .card-body { min-width: 0; }
-
-    .card-meta {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,0.3);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
+    .episode-card:first-child {
+      border-top: 1px solid rgba(237, 217, 192, 0.10);
     }
 
-    .card-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      font-style: italic;
-      font-size: clamp(22px, 2.8vw, 32px);
-      color: rgba(255,255,255,0.75);
-      line-height: 1.2;
-      margin-bottom: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .card-desc {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 15px;
-      color: rgba(255,255,255,0.3);
-      line-height: 1.7;
-    }
-
-    .card-cta {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.25em;
+    .episode-card:hover .ep-title {
       color: var(--orange);
-      text-transform: uppercase;
-      white-space: nowrap;
-      padding-top: 0.25em;
-      flex-shrink: 0;
     }
 
-    /* upcoming — greyed out, no link */
-    .episode-card.upcoming {
-      pointer-events: none;
-      opacity: 0.35;
+    .ep-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0.7;
+      white-space: nowrap;
+      min-width: 120px;
     }
-    .episode-card.upcoming .card-cta { display: none; }
+
+    .ep-body {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ep-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+
+    .ep-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      opacity: 0.4;
+    }
+
+    .ep-arrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.2;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .episode-card:hover .ep-arrow {
+      opacity: 0.7;
+      color: var(--orange);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 40px;
+      border-top: 1px solid rgba(237, 217, 192, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-footer p,
+    .site-footer a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      opacity: 0.3;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      opacity: 0.7;
+      color: var(--orange);
+    }
 
     @media (max-width: 600px) {
-      .site-header { padding: 1.5rem; }
-      .hero        { padding: 4rem 1.5rem 3rem; }
-      .episodes    { padding: 0 1.5rem 6rem; }
+      .site-header,
+      .page-hero,
+      .episode-list,
+      .site-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 
       .episode-card {
-        grid-template-columns: 52px 1fr;
-        grid-template-rows: auto auto;
-        gap: 0 1.5rem;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
       }
-      .card-cta {
-        grid-column: 2;
-        grid-row: 2;
-        padding-top: 0.75rem;
-      }
-    }
 
-    /* ——— FOOTER ——————————————————————————————————————————— */
-    .site-footer {
-      background: var(--black);
-      border-top: 1px solid #111;
-      padding: 2rem;
-      text-align: center;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.2);
+      .ep-date {
+        grid-column: 1 / -1;
+        padding-bottom: 0;
+      }
     }
-    .site-footer a { color: rgba(255,255,255,0.2); text-decoration: none; }
-    .site-footer a:hover { color: rgba(255,255,255,0.5); }
-    .site-footer span { margin: 0 0.75rem; }
   </style>
 </head>
 <body>
 
   <header class="site-header">
-    <a href="/" class="home-link">&#8592; &nbsp;arthouseAM</a>
-    <a href="/">WPAT 930 AM &nbsp;·&nbsp; New York</a>
+    <a href="/">â ArthouseAM</a>
+    <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);opacity:0.8;">All Mixtapes</span>
   </header>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Mixtapes</p>
-      <h1 class="hero-headline">The<br>Archive.</h1>
-      <div class="hero-rule"></div>
-      <p class="hero-sub">
-        Each set aired once on WPAT 930 AM, New York.<br>
-        What you find here is the tracklist, the thinking, and — where available — the cassette.
-      </p>
-    </div>
+  <section class="page-hero">
+    <h1>All Mixtapes</h1>
+    <p>WPAT 930 AM Â· New York Â· Every Friday at 9PM</p>
   </section>
 
-  <section class="episodes">
-    <div class="episodes-inner">
+  <section class="episode-list">
 
-      <!-- Episode 001 -->
-      <a href="/blog/episode-001/" class="episode-card">
-        <span class="card-number">001</span>
-        <div class="card-body">
-          <p class="card-meta">April 3, 2026 &nbsp;·&nbsp; Stottle</p>
-          <h2 class="card-title">As a DJ, House Music records have provided me a way to express myself that no other artistic medium can.</h2>
-          <p class="card-desc">The premiere. 90 minutes. No voiceover. Gone by 10:30pm.</p>
-        </div>
-        <span class="card-cta">Read &rarr;</span>
-      </a>
-
-      <!-- Episode 002 — upcoming placeholder -->
-      <div class="episode-card upcoming">
-        <span class="card-number">002</span>
-        <div class="card-body">
-          <p class="card-meta">April 10, 2026 &nbsp;·&nbsp; Raw Q</p>
-          <h2 class="card-title">Coming April 14</h2>
-          <p class="card-desc">Tracklist and notes posted every Monday after air.</p>
-        </div>
+    <a href="/blog/raw-q/" class="episode-card">
+      <div class="ep-date">Apr 24, 2026</div>
+      <div class="ep-body">
+        <span class="ep-title">DJ Raw Q</span>
+        <span class="ep-sub">Open Format 45s Â· 37 Tracks</span>
       </div>
+      <span class="ep-arrow">â</span>
+    </a>
 
-      <!-- Episode 003 — upcoming placeholder -->
-      <div class="episode-card upcoming">
-        <span class="card-number">003</span>
-        <div class="card-body">
-          <p class="card-meta">April 17, 2026 &nbsp;·&nbsp; TBA</p>
-          <h2 class="card-title">Coming April 21</h2>
-          <p class="card-desc">Tracklist and notes posted every Monday after air.</p>
-        </div>
+    <a href="/blog/episode-001/" class="episode-card">
+      <div class="ep-date">Episode 001</div>
+      <div class="ep-body">
+        <span class="ep-title">Stottle</span>
+        <span class="ep-sub">House Music &amp; Disco Â· 10PM Hour</span>
       </div>
+      <span class="ep-arrow">â</span>
+    </a>
 
-      <!-- Episode 004 — upcoming placeholder -->
-      <div class="episode-card upcoming">
-        <span class="card-number">004</span>
-        <div class="card-body">
-          <p class="card-meta">April 24, 2026 &nbsp;·&nbsp; CB Smoove</p>
-          <h2 class="card-title">Coming April 28</h2>
-          <p class="card-desc">Tracklist and notes posted every Monday after air.</p>
-        </div>
-      </div>
-
-    </div>
   </section>
 
   <footer class="site-footer">
-    <a href="/">arthouseAM</a>
-    <span>&middot;</span>
-    <a href="/privacy-policy.html">Privacy</a>
-    <span>&middot;</span>
-    <a href="/terms.html">Terms</a>
+    <p>ArthouseAM &nbsp;Â·&nbsp; WPAT 930 AM New York &nbsp;Â·&nbsp; Fridays 9PM</p>
+    <a href="/">arthouseam.com</a>
   </footer>
 
 </body>
