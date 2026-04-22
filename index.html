@@ -528,11 +528,13 @@
     }
 
     /* ––– SITE HEADER –––––––––––––––––––––––––––––––––––––––––––––– */
-    .site-header { background: var(--black); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1a1a1a; }
-    .site-header a { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.35); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .site-header { background: var(--black); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem 2.25rem; border-bottom: 1px solid #1a1a1a; }
+    .site-header a { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.35); text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: color 0.2s; }
     .site-header a:hover { color: var(--cream); }
     .site-header .ep-link { color: var(--off-white); }
     .site-header .ep-link:hover { color: #e06030; }
+    .site-header a.support-link { margin-left: auto; color: var(--black); background: var(--orange); padding: 0.45rem 1rem; border-radius: 2px; }
+    .site-header a.support-link:hover { background: var(--cream); color: var(--black); }
 
 
     /* ––– ABOUT + SMS OPT-IN –––––––––––––––––––––––––––––––––––––––––– */
@@ -621,6 +623,7 @@
     <a href="/blog/episode-001/" class="ep-link">Episode 001: Stottle &nbsp;&rarr;</a>
     <a href="/blog/episode-002/" class="ep-link">Episode 002: Raw Q &nbsp;&rarr;</a>
     <a href="/blog/" style="font-weight:700; color:var(--off-white);">All Mixtapes</a>
+      <a class="support-link" href="https://buymeacoffee.com/arthouseam" target="_blank" rel="noopener">Support the Show</a>
   </header>
 
     <!-- âââ HERO âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
