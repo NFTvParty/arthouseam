@@ -728,37 +728,82 @@
       </button>
       <p class="listen-status" id="listenStatus">Tap to stream live</p>
         <p class="listen-note">* Having consistent issues? Try <a href="https://wpat930am.com" target="_blank" rel="noopener">WPAT930am.com</a></p>
-      <audio id="stream" preload="none">
-        <source src="https://video1.getstreamhosting.com:2000/public/8288-4" type="audio/mpeg">
+      <audio id="stream" preload="none" crossorigin="anonymous">
+        <source src="https://video1.getstreamhosting.com:8302/stream" type="audio/mpeg">
       </audio>
     </div>
   </section>
 
   <script>
-    const audio = document.getElementById('stream');
-    const btn = document.getElementById('playBtn');
-    const icon = document.getElementById('playIcon');
-    const status = document.getElementById('listenStatus');
+    (function () {
+      const audio  = document.getElementById('stream');
+      const btn    = document.getElementById('playBtn');
+      const icon   = document.getElementById('playIcon');
+      const status = document.getElementById('listenStatus');
 
-    const playPath = 'M8 5v14l11-7z';
-    const pausePath = 'M6 19h4V5H6v14zm8-14v14h4V5h-4z';
+      const playPath  = 'M8 5v14l11-7z';
+      const pausePath = 'M6 19h4V5H6v14zm8-14v14h4V5h-4z';
+      const STREAM_URL = 'https://video1.getstreamhosting.com:8302/stream';
 
-    function togglePlay() {
-      if (audio.paused) {
-        status.textContent = 'Connecting\u2026';
-        audio.play().then(() => {
+      // Live window: Fridays 9:00 PM - 11:00 PM America/New_York.
+      function isLiveWindow() {
+        const nyStr = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+        const ny = new Date(nyStr);
+        return ny.getDay() === 5 && ny.getHours() >= 21 && ny.getHours() < 23;
+      }
+
+      // Reflect on-air vs off-air on the play button + status line.
+      function applyAirState() {
+        if (isLiveWindow()) {
+          btn.disabled = false;
+          btn.style.opacity = '';
+          btn.style.cursor = '';
+          if (audio.paused) status.textContent = 'Tap to stream live';
+        } else {
+          if (!audio.paused) {
+            audio.pause();
+            icon.querySelector('path').setAttribute('d', playPath);
+          }
+          btn.disabled = true;
+          btn.style.opacity = '0.45';
+          btn.style.cursor = 'not-allowed';
+          status.textContent = 'Off-air \u2014 back Friday at 9PM EST';
+        }
+      }
+
+      applyAirState();
+      setInterval(applyAirState, 60 * 1000);
+
+      function attemptPlay(retry) {
+        status.textContent = retry ? 'Reconnecting\u2026' : 'Connecting\u2026';
+        audio.src = STREAM_URL + '?t=' + Date.now();
+        audio.load();
+        return audio.play().then(function () {
           icon.querySelector('path').setAttribute('d', pausePath);
           status.textContent = 'Streaming live';
-        }).catch(() => {
-          status.textContent = 'Unable to connect';
+        }).catch(function () {
+          if (!retry) {
+            return new Promise(function (r) { setTimeout(r, 800); }).then(function () {
+              return attemptPlay(true);
+            });
+          }
+          status.innerHTML = 'Can\u2019t connect \u2014 try <a href="https://wpat930am.com" target="_blank" rel="noopener">WPAT930am.com</a>';
         });
-      } else {
-        audio.pause();
-        audio.src = audio.src; // reset buffer
-        icon.querySelector('path').setAttribute('d', playPath);
-        status.textContent = 'Tap to stream live';
       }
-    }
+
+      window.togglePlay = function () {
+        if (!isLiveWindow()) { applyAirState(); return; }
+        if (audio.paused) {
+          attemptPlay(false);
+        } else {
+          audio.pause();
+          audio.removeAttribute('src');
+          audio.load();
+          icon.querySelector('path').setAttribute('d', playPath);
+          status.textContent = 'Tap to stream live';
+        }
+      };
+    })();
   </script>
 
   <!-- âââ ABOUT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ -->
