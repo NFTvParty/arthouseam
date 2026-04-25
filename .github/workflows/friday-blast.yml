@@ -2,9 +2,9 @@ name: ArthouseAM Friday Night Blast
 
 on:
   schedule:
-    # Every Friday at 1:00 AM UTC = 9:00 PM EDT (UTC-4, Apr-Oct)
-    # In winter EST (UTC-5), this fires at 8:00 PM — update to '0 2 * * 6' for Nov-Mar
-    - cron: '0 1 * * 6'
+    # Scheduled 00:45 UTC Sat = 8:45 PM EDT Fri (UTC-4, Apr-Oct).
+    # Set 15min early because GitHub Actions cron delays runs at top-of-hour. Winter (UTC-5): use '45 1 * * 6'.
+    - cron: '45 0 * * 6'
   workflow_dispatch:  # allow manual trigger from GitHub Actions tab
 
 jobs:
